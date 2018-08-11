@@ -4,10 +4,10 @@ console.log('\'Allo \'Allo! Content script');
 
 var flag = true;
 
-function helpAndDoc(domToAnalyse) {
+const helpAndDoc = (domToAnalyse) => {
 
 	// Verifica se existe nav
-	var navsCollection = domToAnalyse.getElementsByTagName('nav');
+	const navsCollection = domToAnalyse.getElementsByTagName('nav');
 	if (navsCollection.length) {
 		console.log('Página possui NAV.');
 	} else {
@@ -15,13 +15,13 @@ function helpAndDoc(domToAnalyse) {
 	}
 
 	// Verifica se existem inputs sem placeholder
-	var inputsWithoutPlaceholder = domToAnalyse.querySelectorAll('input').length - domToAnalyse.querySelectorAll('input[placeholder]').length;
+	const inputsWithoutPlaceholder = domToAnalyse.querySelectorAll('input').length - domToAnalyse.querySelectorAll('input[placeholder]').length;
 	console.log('Existem ' + inputsWithoutPlaceholder + ' inputs sem placeholder na página.');
 
 	// Verifica se existem inputs sem label
-	var inputsWithoutLabel = 0;
-	var inputsArray = Array.from(domToAnalyse.querySelectorAll('input'));
-	for (var item of inputsArray) {
+	let inputsWithoutLabel = 0;
+	const inputsArray = Array.from(domToAnalyse.querySelectorAll('input'));
+	for (let item of inputsArray) {
 		if(item.getAttribute('id')) {
 
 			if(domToAnalyse.querySelectorAll('label[for="' + item.getAttribute('id') + '"]').length <= 0) {
@@ -35,13 +35,13 @@ function helpAndDoc(domToAnalyse) {
 	console.log('Existem ' + inputsWithoutLabel + ' inputs sem label na página.');
 
 	// Verifica se existem elementos de ajuda
-	var helpElements = domToAnalyse.querySelectorAll('[uxi-help]').length + domToAnalyse.querySelectorAll('[rel="help"]').length;
+	const helpElements = domToAnalyse.querySelectorAll('[uxi-help]').length + domToAnalyse.querySelectorAll('[rel="help"]').length;
 	console.log('Existem ' + helpElements + ' elementos de ajuda na página.');
 
 	// Verifica se imagens possuem alt
-	var imgsWithoutAlt = 0;
-	var imgsArray = Array.from(domToAnalyse.querySelectorAll('img'));
-	for (var item of imgsArray) {
+	let imgsWithoutAlt = 0;
+	const imgsArray = Array.from(domToAnalyse.querySelectorAll('img'));
+	for (let item of imgsArray) {
 		if (item.getAttribute('alt')) {
 
 			if (item.getAttribute('alt') === '') {
@@ -52,7 +52,7 @@ function helpAndDoc(domToAnalyse) {
 			imgsWithoutAlt++;
 		}
 	}
-	console.log('Das ' + imgsArray.length + ' imagens da página ' + imgsWithoutAlt + ' não possuem texto altertivo');
+	console.log('Das ' + imgsArray.length + ' imagens da página ' + imgsWithoutAlt + ' não possuem texto alternativo');
 
 };
 

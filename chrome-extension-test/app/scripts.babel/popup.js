@@ -5,9 +5,13 @@ console.log('\'Allo \'Allo! Popup');
 const helpAndDocFunc = chrome.extension.getBackgroundPage().helpAndDoc;
 const stringifiedHelpAndDocFunc = `(${helpAndDocFunc})`;
 
+const findAndUndoErrorsFunc = chrome.extension.getBackgroundPage().findAndUndoErrors;
+const stringifiedfindAndUndoErrorsFunc = `(${findAndUndoErrorsFunc})`;
+
 const message = {
 	data: 'data',
-	helpAndDoc: stringifiedHelpAndDocFunc
+	helpAndDoc: stringifiedHelpAndDocFunc,
+	findAndUndoErrors: stringifiedfindAndUndoErrorsFunc
 };
 
 var el = document.getElementById('btn'); 

@@ -12,7 +12,8 @@
     "scripts": [
       "scripts/chromereload.js",
 			"scripts/background.js",
-			"scripts/functions/helpAndDoc.js"
+			"scripts/functions/helpAndDoc.js",
+			"scripts/functions/findAndUndoErrors.js"
     ]
   },
   "permissions": [

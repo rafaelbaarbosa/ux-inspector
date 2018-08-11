@@ -5,7 +5,6 @@ console.log('\'Allo \'Allo! Content script');
 var flag = true;
 
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
-  console.log(request);
  //  var data = request.data + 'bye' || {};
 
   // var htmlCollection = document.getElementsByTagName('nav');
@@ -18,11 +17,11 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 
 
 	const helpAndDoc = eval(request.helpAndDoc);
-	console.log('-----------');
-	console.log(helpAndDoc);
-	console.log('-----------');
+	const findAndUndoErrors = eval(request.findAndUndoErrors);
 
 	helpAndDoc(document);
+	console.log('-------');
+	findAndUndoErrors(document);
 
 	var data = flag ? 'Todas as imagens possuem ALT.' : 'Essa página possui uma ou mais imagens sem ALT.';
 

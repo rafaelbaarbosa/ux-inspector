@@ -2,7 +2,7 @@
 
 console.log('\'Allo \'Allo! Content script');
 
-var flag = true;
+let flag = true;
 
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
  //  var data = request.data + 'bye' || {};
@@ -18,12 +18,15 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 
 	const helpAndDoc = eval(request.helpAndDoc);
 	const findAndUndoErrors = eval(request.findAndUndoErrors);
+	const systemState = eval(request.systemState);
 
 	helpAndDoc(document);
 	console.log('-------');
 	findAndUndoErrors(document);
+	console.log('-------');
+	systemState(document);
 
-	var data = flag ? 'Todas as imagens possuem ALT.' : 'Essa página possui uma ou mais imagens sem ALT.';
+	let data = flag ? 'Todas as imagens possuem ALT.' : 'Essa página possui uma ou mais imagens sem ALT.';
 
   sendResponse({data: data, success: true});
 });

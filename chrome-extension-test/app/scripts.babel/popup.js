@@ -11,11 +11,15 @@ const stringifiedfindAndUndoErrorsFunc = `(${findAndUndoErrorsFunc})`;
 const systemStateFunc = chrome.extension.getBackgroundPage().systemState;
 const stringifiedSystemStateFunc = `(${systemStateFunc})`;
 
+const preventErrorsFunc = chrome.extension.getBackgroundPage().preventErrors;
+const stringifiedPreventErrorsFunc = `(${preventErrorsFunc})`;
+
 const message = {
 	data: 'data',
 	helpAndDoc: stringifiedHelpAndDocFunc,
 	findAndUndoErrors: stringifiedfindAndUndoErrorsFunc,
-	systemState: stringifiedSystemStateFunc
+	systemState: stringifiedSystemStateFunc,
+	preventErrors: stringifiedPreventErrorsFunc
 };
 
 var el = document.getElementById('btn'); 

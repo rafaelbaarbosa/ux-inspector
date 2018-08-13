@@ -19,12 +19,16 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 	const helpAndDoc = eval(request.helpAndDoc);
 	const findAndUndoErrors = eval(request.findAndUndoErrors);
 	const systemState = eval(request.systemState);
+	const preventErrors = eval(request.preventErrors);
 
+	console.log('------- Ajuda e documentação -------');
 	helpAndDoc(document);
-	console.log('-------');
+	console.log('------- Encontrar e se recuperar de erros -------');
 	findAndUndoErrors(document);
-	console.log('-------');
+	console.log('------- Visibilidade do estado do sistema -------');
 	systemState(document);
+	console.log('------- Prevenção de erros -------');
+	preventErrors(document);
 
 	let data = flag ? 'Todas as imagens possuem ALT.' : 'Essa página possui uma ou mais imagens sem ALT.';
 

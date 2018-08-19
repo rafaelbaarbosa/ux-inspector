@@ -2,6 +2,19 @@
 
 const patternsAndFreedom = (domToAnalyse) => {
 
+	// Analisa se os elementos com tabindex são conteúdos interativos ou não
+	const interactiveContent = ['audio', 'img', 'input', 'menu', 'object', 'video', 'a', 'button', 'details', 'embed', 'iframe', 'label', 'select', 'textarea'];
+	const elementsWithTabindex = domToAnalyse.querySelectorAll('[tabindex]');
+	let nonInteractiveContentWithTabIndex = 0;
+
+	for (let element of elementsWithTabindex) {
+		if (!interactiveContent.includes(element.localName))
+			nonInteractiveContentWithTabIndex++;
+	}
+
+	console.log(`Existe ${nonInteractiveContentWithTabIndex} dos ${elementsWithTabindex.length} elementos utilizando tab index que são conteúdos não interativos.`)
+
+	// Analisa links e se eles estão quebrados ou não
 	const urlExists = (url) => {
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
@@ -26,8 +39,6 @@ const patternsAndFreedom = (domToAnalyse) => {
 	let connectionErrors = 0;
 	const links = Array.from(domToAnalyse.querySelectorAll('a'));
 
-	console.log(links.length);
-
 	const promises = links.map((link) => {
 		let promise = urlExists(link.href);
 		return promise.then(JSON.parse);
@@ -48,7 +59,7 @@ const patternsAndFreedom = (domToAnalyse) => {
 		}
 
 		console.log(`Existem ${brokenLinks} links quebrados na página.`);
-		console.log(`Devido a erros de conexão, em ${connectionErrors} links não foi possível testar se ele leva a alguma página.`);
+		console.log(`Devido a erros de conexão, em ${connectionErrors} links não foi possível testar se ele leva para alguma página.`);
 	});
 
 };

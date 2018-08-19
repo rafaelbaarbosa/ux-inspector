@@ -15,7 +15,8 @@
 			"scripts/functions/helpAndDoc.js",
 			"scripts/functions/findAndUndoErrors.js",
 			"scripts/functions/preventErrors.js",
-			"scripts/functions/systemState.js"
+			"scripts/functions/systemState.js",
+			"scripts/functions/patternsAndFreedom.js"
     ]
   },
   "permissions": [

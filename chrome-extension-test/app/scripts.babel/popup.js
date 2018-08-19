@@ -14,12 +14,16 @@ const stringifiedSystemStateFunc = `(${systemStateFunc})`;
 const preventErrorsFunc = chrome.extension.getBackgroundPage().preventErrors;
 const stringifiedPreventErrorsFunc = `(${preventErrorsFunc})`;
 
+const patternsAndFreedomFunc = chrome.extension.getBackgroundPage().patternsAndFreedom;
+const stringifiedPatternsAndFreedomFunc = `(${patternsAndFreedomFunc})`;
+
 const message = {
 	data: 'data',
 	helpAndDoc: stringifiedHelpAndDocFunc,
 	findAndUndoErrors: stringifiedfindAndUndoErrorsFunc,
 	systemState: stringifiedSystemStateFunc,
-	preventErrors: stringifiedPreventErrorsFunc
+	preventErrors: stringifiedPreventErrorsFunc,
+	patternsAndFreedom: stringifiedPatternsAndFreedomFunc
 };
 
 var el = document.getElementById('btn'); 

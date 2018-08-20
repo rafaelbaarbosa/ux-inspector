@@ -21,6 +21,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 	const systemState = eval(request.systemState);
 	const preventErrors = eval(request.preventErrors);
 	const patternsAndFreedom = eval(request.patternsAndFreedom);
+	const flexibility = eval(request.flexibility);
 
 	console.log('------- Ajuda e documentação -------');
 	helpAndDoc(document);
@@ -30,6 +31,8 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 	systemState(document);
 	console.log('------- Prevenção de erros -------');
 	preventErrors(document);
+	console.log('------- Flexibilidade e eficiência do uso -------');
+	flexibility(document);
 	console.log('------- Consistência e padronização | Liberdade de controle fácil para o usuário -------');
 	patternsAndFreedom(document);
 

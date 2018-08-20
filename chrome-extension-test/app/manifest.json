@@ -16,7 +16,8 @@
 			"scripts/functions/findAndUndoErrors.js",
 			"scripts/functions/preventErrors.js",
 			"scripts/functions/systemState.js",
-			"scripts/functions/patternsAndFreedom.js"
+			"scripts/functions/patternsAndFreedom.js",
+			"scripts/functions/flexibility.js"
     ]
   },
   "permissions": [

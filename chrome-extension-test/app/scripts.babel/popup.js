@@ -17,13 +17,17 @@ const stringifiedPreventErrorsFunc = `(${preventErrorsFunc})`;
 const patternsAndFreedomFunc = chrome.extension.getBackgroundPage().patternsAndFreedom;
 const stringifiedPatternsAndFreedomFunc = `(${patternsAndFreedomFunc})`;
 
+const flexibilityFunc = chrome.extension.getBackgroundPage().flexibility;
+const stringifiedFlexibilityFunc = `(${flexibilityFunc})`;
+
 const message = {
 	data: 'data',
 	helpAndDoc: stringifiedHelpAndDocFunc,
 	findAndUndoErrors: stringifiedfindAndUndoErrorsFunc,
 	systemState: stringifiedSystemStateFunc,
 	preventErrors: stringifiedPreventErrorsFunc,
-	patternsAndFreedom: stringifiedPatternsAndFreedomFunc
+	patternsAndFreedom: stringifiedPatternsAndFreedomFunc,
+	flexibility: stringifiedFlexibilityFunc
 };
 
 var el = document.getElementById('btn'); 

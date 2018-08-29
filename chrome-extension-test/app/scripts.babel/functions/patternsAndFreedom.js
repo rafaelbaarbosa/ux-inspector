@@ -30,36 +30,51 @@ const patternsAndFreedom = (domToAnalyse) => {
 			xhr.onloadend = () => {
 				resolve(result);
 			};
-			xhr.open('HEAD', url);
-			xhr.send();
+
+			setTimeout(() => {
+				xhr.open('HEAD', url);
+				xhr.send();
+			}, 2000);
+		});
+	}
+
+	const delay = (amount = number) => {
+		return new Promise((resolve) => {
+			setTimeout(resolve, amount);
 		});
 	}
 
 	let brokenLinks = 0;
 	let connectionErrors = 0;
 	const links = Array.from(domToAnalyse.querySelectorAll('a'));
+	let promises = [];
 
-	const promises = links.map((link) => {
-		let promise = urlExists(link.href);
-		return promise.then(JSON.parse);
-	});
+	for(let i = 0; i < links.length - 1; i++){
+		(function(i){
+			setTimeout(() => {
+				let promise = urlExists(links[i].href);
+				promises.push(promise.then(JSON.parse));
+			},1000 * i);
+		}(i));
+	}
 
-	Promise.all(promises).then((results) => {
-		for (let result of results) {
-			switch (result) {
-				case -1: // não conseguiu se conectar para obter resposta
-					connectionErrors++;
-					break;
-				case 0: // o link não foi encontrado
-					brokenLinks++;
-				case 1:
-				default:
-					break;
+	setTimeout(() => {
+		Promise.all(promises).then((results) => {
+			for (let result of results) {
+				switch (result) {
+					case -1: // não conseguiu se conectar para obter resposta
+						connectionErrors++;
+						break;
+					case 0: // o link não foi encontrado
+						brokenLinks++;
+					case 1:
+					default:
+						break;
+				}
 			}
-		}
-
-		console.log(`Existem ${brokenLinks} links quebrados na página.`);
-		console.log(`Devido a erros de conexão, em ${connectionErrors} links não foi possível testar se ele leva para alguma página.`);
-	});
+			console.log(`Existem ${brokenLinks} links quebrados na página.`);
+			console.log(`Devido a erros de conexão, em ${connectionErrors} links não foi possível testar se ele leva para alguma página.`);
+		});
+	}, 1001 * links.length);
 
 };

@@ -20,6 +20,10 @@ const stringifiedPatternsAndFreedomFunc = `(${patternsAndFreedomFunc})`;
 const flexibilityFunc = chrome.extension.getBackgroundPage().flexibility;
 const stringifiedFlexibilityFunc = `(${flexibilityFunc})`;
 
+const createReport = () => {
+	chrome.tabs.create({url: '../report.html', active: false});
+};
+
 const message = {
 	data: 'data',
 	helpAndDoc: stringifiedHelpAndDocFunc,
@@ -27,7 +31,8 @@ const message = {
 	systemState: stringifiedSystemStateFunc,
 	preventErrors: stringifiedPreventErrorsFunc,
 	patternsAndFreedom: stringifiedPatternsAndFreedomFunc,
-	flexibility: stringifiedFlexibilityFunc
+	flexibility: stringifiedFlexibilityFunc,
+	getData: false
 };
 
 var el = document.getElementById('btn'); 
@@ -39,7 +44,10 @@ el.addEventListener('click', function() {
 	    console.log('-----------');
 	    console.log(response);
 	    console.log('success');
-	    console.log('-----------');
+			console.log('-----------');
+
+			// createReport();
+
 	  });
 	});
 

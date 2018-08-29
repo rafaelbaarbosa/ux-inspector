@@ -17,7 +17,8 @@
 			"scripts/functions/preventErrors.js",
 			"scripts/functions/systemState.js",
 			"scripts/functions/patternsAndFreedom.js",
-			"scripts/functions/flexibility.js"
+			"scripts/functions/flexibility.js",
+			"scripts/report.js"
     ]
   },
   "permissions": [
@@ -25,16 +26,20 @@
     "http://*/*",
     "https://*/*",
     "notifications",
-    "activeTab"
+		"activeTab",
+		"file:///*",
+		"file://*",
+		"<all_urls>"
   ],
   "content_scripts": [
     {
       "matches": [
         "http://*/*",
-        "https://*/*"
+				"https://*/*",
+				"file://*"
       ],
       "js": [
-        "scripts/contentscript.js"
+				"scripts/contentscript.js"
       ],
       "run_at": "document_end",
       "all_frames": false

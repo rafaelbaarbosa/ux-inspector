@@ -21,8 +21,18 @@ const preventErrors = (domToAnalyse) => {
 
 		inputsWithoutType = inputsWithoutType + (form.querySelectorAll('input').length - form.querySelectorAll('input[type]').length);
 	}
-	console.log(`Existem ${formsWithoutSubmit} forms sem nenhum elemento com type="submit".`);
-	console.log(`Existem ${formsWithoutRequiredInputs} forms sem nenhum elemento required.`);
-	console.log(`Existem ${inputsWithoutType} inputs sem type atribuído.`);
+	const formsWithoutSubmitLi = formsWithoutSubmit ? `<li>${formsWithoutSubmit === 1 ? 'Existe' : 'Existem'} ${formsWithoutSubmit} ${formsWithoutSubmit === 1 ? 'formulário' : 'formulários'} sem nenhum elemento com type="submit".</li>` : '';
+	const formsWithoutRequiredInputsLi = formsWithoutRequiredInputs ? `<li>${formsWithoutRequiredInputs === 1 ? 'Existe' : 'Existem'} ${formsWithoutRequiredInputs} ${formsWithoutRequiredInputs === 1 ? 'formulário' : 'formulários'} sem nenhum elemento obrigatório.</li>` : '';
+	const inputsWithoutTypeLi = inputsWithoutType ? `<li>${inputsWithoutType === 1 ? 'Existe' : 'Existem'} ${inputsWithoutType} ${inputsWithoutType === 1 ? 'input' : 'inputs'} sem type atribuído.</li>` : '';
+
+	return (`
+		<h3>Encontrar e se recuperar de erros</h3>
+		<ul class="alerts-detected">
+			<li>${alertElements === 1 ? 'Existe' : 'Existem'} ${alertElements} ${alertElements === 1 ? 'elemento' : 'elementos'} de alerta na página${permanentActions ? `, além disso ${permanentActions > 1 ? `existem ${permanentActions} ações permanentes.` : `existe ${permanentActions} ação permanente.`}` : '.'}</li>
+			${formsWithoutSubmitLi}
+			${formsWithoutRequiredInputsLi}
+			${inputsWithoutTypeLi}
+		</ul>
+	`);
 
 };

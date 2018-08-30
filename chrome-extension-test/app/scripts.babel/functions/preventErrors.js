@@ -5,7 +5,6 @@ const preventErrors = (domToAnalyse) => {
 	// Verifica quantidade de elementos de alerta | avisa caso possua ações irreversíveis
 	const alertElements = domToAnalyse.querySelectorAll('[uxi-alert]').length;
 	const permanentActions = domToAnalyse.querySelectorAll('[uxi-permanent-action]').length;
-	console.log(`Existem ${alertElements} elementos de alerta na página${permanentActions ? `, além disso existem ${permanentActions} ações permanentes.` : '.'}`);
 
 	// Verifica forms sem elemento para input, sem inputs required e inputs sem type.
 	const forms = domToAnalyse.querySelectorAll('form');

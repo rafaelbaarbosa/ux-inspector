@@ -7,8 +7,8 @@ const findAndUndoErrors = (domToAnalyse) => {
 	return (`
 		<h3>Encontrar e se recuperar de erros</h3>
 		<ul class="alerts-detected">
-			<li>Existem ${errorElements} mensagens de erro na funcionalidade.</li>
-			<li>Existem ${undoErrorsElements} elementos que permitem a recuperação de erros na funcionalidade.</li>
+			<li>${errorElements === 1 ? 'Existe' : 'Existem'} ${errorElements} ${errorElements === 1 ? 'mensagem' : 'mensagens'} de erro na funcionalidade.</li>
+			<li>${undoErrorsElements === 1 ? 'Existe' : 'Existem'} ${undoErrorsElements} ${undoErrorsElements === 1 ? 'elemento' : 'elementos'} de recuperação de erros na funcionalidade.</li>
 		</ul>
 	`);
 };

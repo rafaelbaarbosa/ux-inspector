@@ -38,12 +38,6 @@ const patternsAndFreedom = (domToAnalyse) => {
 		});
 	}
 
-	const delay = (amount = number) => {
-		return new Promise((resolve) => {
-			setTimeout(resolve, amount);
-		});
-	}
-
 	let brokenLinks = 0;
 	let connectionErrors = 0;
 	const links = Array.from(domToAnalyse.querySelectorAll('a'));

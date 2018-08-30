@@ -2,52 +2,98 @@
 
 const helpAndDoc = (domToAnalyse) => {
 
+	const inputsArray = Array.from(domToAnalyse.querySelectorAll('input'));
+
 	// Verifica se existe nav
 	const navsCollection = domToAnalyse.getElementsByTagName('nav');
-	if (navsCollection.length) {
-		console.log('Página possui NAV.');
-	} else {
-		console.log('Página não possui NAV.');
-	}
+	let navsLi = ``;
+	if (!navsCollection.length)
+		navsLi = `<li>Funcionalidade não possui nenhum elemento NAV.</li>`;
 
 	// Verifica se existem inputs sem placeholder
-	const inputsWithoutPlaceholder = domToAnalyse.querySelectorAll('input').length - domToAnalyse.querySelectorAll('input[placeholder]').length;
-	console.log('Existem ' + inputsWithoutPlaceholder + ' inputs sem placeholder na página.');
+	const inputsWithoutPlaceholderCounter = domToAnalyse.querySelectorAll('input').length - domToAnalyse.querySelectorAll('input[placeholder]').length;
+	let inputsWithoutPlaceholderLi = ``;
+	if (inputsWithoutPlaceholderCounter){
+		const filteredInputs = inputsArray.filter((element) => {
+			return !element.getAttribute('placeholder');
+		});
+		const filteredInputsWithLi = filteredInputs.map((element) => {
+			return `<li>${element.outerHTML}</li>`;
+		});
+		const inputsWithoutPlaceholderList = `
+			<ul class="more-info-list">
+				${filteredInputsWithLi.join('\n')}
+			</ul>
+		`;
+
+		inputsWithoutPlaceholderLi = `
+			<li>
+				Existem ${inputsWithoutPlaceholderCounter} inputs sem placeholder na funcionalidade.
+				${inputsWithoutPlaceholderList}
+			</li>
+		`;
+
+	}
 
 	// Verifica se existem inputs sem label
-	let inputsWithoutLabel = 0;
-	const inputsArray = Array.from(domToAnalyse.querySelectorAll('input'));
-	for (let item of inputsArray) {
-		if(item.getAttribute('id')) {
-
-			if(domToAnalyse.querySelectorAll('label[for="' + item.getAttribute('id') + '"]').length <= 0) {
-				inputsWithoutLabel++;
-			}
-
-		} else {
-			inputsWithoutLabel++;
-		}
+	const inputsWithoutLabel = inputsArray.filter((element) => {
+		return (!element.getAttribute('id') || ( element.getAttribute('id') && (domToAnalyse.querySelectorAll('label[for="' + element.getAttribute('id') + '"]').length <= 0) ));
+	});
+	let inputsWithoutLabelLi = ``;
+	if (inputsWithoutLabel.length > 0) {
+		const inputElementsInsideLi = inputsWithoutLabel.map((element) => {
+			return `<li>${element.outerHTML}</li>`;
+		});
+		const inputElementsList = `
+			<ul class="more-info-list">
+				${inputElementsInsideLi.join('\n')}
+			</ul>
+		`;
+		inputsWithoutLabelLi = `
+			<li>
+				Existem ${inputsWithoutLabel.length} inputs sem label na funcionalidade.
+				${inputElementsList}
+			</li>
+		`;
 	}
-	console.log('Existem ' + inputsWithoutLabel + ' inputs sem label na página.');
 
 	// Verifica se existem elementos de ajuda
 	const helpElements = domToAnalyse.querySelectorAll('[uxi-help]').length + domToAnalyse.querySelectorAll('[rel="help"]').length;
-	console.log('Existem ' + helpElements + ' elementos de ajuda na página.');
+	const helpElementsLi = `<li>Existem ${helpElements} elementos de ajuda na página.</li>`;
 
 	// Verifica se imagens possuem alt
-	let imgsWithoutAlt = 0;
 	const imgsArray = Array.from(domToAnalyse.querySelectorAll('img'));
-	for (let item of imgsArray) {
-		if (item.getAttribute('alt')) {
+	const imgsWithoutAlt = imgsArray.filter((element) => {
+		return (!element.getAttribute('alt') || ( element.getAttribute('alt') && (element.getAttribute('alt') === '') ))
+	});
 
-			if (item.getAttribute('alt') === '') {
-				imgsWithoutAlt++;
-			}
-
-		} else {
-			imgsWithoutAlt++;
-		}
+	let imgsWithoutAltLi = ``;
+	if (imgsWithoutAlt.length > 0) {
+		const imgElementsInsideLi = imgsWithoutAlt.map((element) => {
+			return `<li>${element.outerHTML}</li>`;
+		});
+		const imgElementsList = `
+			<ul class="more-info-list">
+				${imgElementsInsideLi.join('\n')}
+			</ul>
+		`;
+		imgsWithoutAltLi = `
+			<li>
+				De ${imgsArray.length} ${imgsArray.length > 1 ? 'imagens utilizadas' : 'imagem utilizada'} na funcionalidade ${imgsWithoutAlt.length} não ${imgsWithoutAlt.length > 1 ? 'possuem' : 'possui'} texto alternativo.
+				${imgElementsList}
+			</li>
+		`;
 	}
-	console.log('Das ' + imgsArray.length + ' imagens da página ' + imgsWithoutAlt + ' não possuem texto alternativo');
+
+	return (`
+		<h3>Ajuda e documentação</h3>
+		<ul class="alerts-detected">
+			${navsLi}
+			${inputsWithoutPlaceholderLi}
+			${inputsWithoutLabelLi}
+			${helpElementsLi}
+			${imgsWithoutAltLi}
+		</ul>
+	`);
 
 };

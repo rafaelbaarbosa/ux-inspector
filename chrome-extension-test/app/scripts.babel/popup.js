@@ -32,7 +32,7 @@ const message = {
 	preventErrors: stringifiedPreventErrorsFunc,
 	patternsAndFreedom: stringifiedPatternsAndFreedomFunc,
 	flexibility: stringifiedFlexibilityFunc,
-	getData: false
+	getReport: false
 };
 
 var el = document.getElementById('btn'); 
@@ -46,7 +46,7 @@ el.addEventListener('click', function() {
 	    console.log('success');
 			console.log('-----------');
 
-			// createReport();
+			createReport();
 
 	  });
 	});

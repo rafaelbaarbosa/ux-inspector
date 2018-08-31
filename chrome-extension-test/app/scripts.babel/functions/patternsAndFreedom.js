@@ -3,16 +3,27 @@
 const patternsAndFreedom = (domToAnalyse) => {
 
 	// Analisa se os elementos com tabindex são conteúdos interativos ou não
-	const interactiveContent = ['audio', 'img', 'input', 'menu', 'object', 'video', 'a', 'button', 'details', 'embed', 'iframe', 'label', 'select', 'textarea'];
-	const elementsWithTabindex = domToAnalyse.querySelectorAll('[tabindex]');
-	let nonInteractiveContentWithTabIndex = 0;
-
-	for (let element of elementsWithTabindex) {
-		if (!interactiveContent.includes(element.localName))
-			nonInteractiveContentWithTabIndex++;
+	let interactiveContentLi = ``;
+	const interactiveContent = domToAnalyse.querySelectorAll('audio, img, input, menu, object, video, a, button, details, embed, iframe, label, select, textarea');
+	const interactiveContentWithoutTabIndex = interactiveContent.filter((element) => {
+		return !element.getAttribute('tabindex');
+	});
+	if (interactiveContentWithoutTabIndex.length > 0) {
+		const elementsInsideLi = interactiveContentWithoutTabIndex.map((element) => {
+			return `<li>${element.outerHTML}</li>`;
+		});
+		const elementsWithoutTabIndexList = `
+			<ul class="more-info-list">
+				${elementsInsideLi.join('\n')}
+			</ul>
+		`;
+		interactiveContentLi = `
+			<li>
+				${elementsInsideLi.length === 1 ? 'Existe 1 elemento interativo sem tabindex na funcionalidade.' : `Existem ${elementsInsideLi.length} elementos interativos sem tabindex na funcionalidade.`}
+				${elementsWithoutTabIndexList}
+			</li>
+		`;
 	}
-
-	console.log(`Existe ${nonInteractiveContentWithTabIndex} dos ${elementsWithTabindex.length} elementos utilizando tab index que são conteúdos não interativos.`)
 
 	// Analisa links e se eles estão quebrados ou não
 	const urlExists = (url) => {
@@ -66,8 +77,16 @@ const patternsAndFreedom = (domToAnalyse) => {
 						break;
 				}
 			}
-			console.log(`Existem ${brokenLinks} links quebrados na página.`);
-			console.log(`Devido a erros de conexão, em ${connectionErrors} links não foi possível testar se ele leva para alguma página.`);
+			const brokenLinksLi = brokenLinks > 0 ? `${brokenLinks === 1 ? 'Existe 1 link quebrados na funcionalidade.' : `Existem ${brokenLinks} links quebrados na página.`}` : ``;
+			const connectionErrorsLi = connectionErrors > 0 ? `${connectionErrors === 1 ? 'Devido a erros de conexão, em 1 link da funcionalidade não foi possível testar se ele leva para alguma página.' : `Devido a erros de conexão, em ${connectionErrors} links da funcionalidade não foi possível testar se eles levam para alguma página.`}` : '';
+			return (`
+				<h3>Consistência e padronização | Liberdade de controle fácil para o usuário</h3>
+				<ul class="alerts-detected">
+					${interactiveContentLi}
+					${brokenLinksLi}
+					${connectionErrorsLi}
+				</ul>
+			`);
 		});
 	}, 1001 * links.length);
 

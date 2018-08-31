@@ -25,7 +25,7 @@ const preventErrors = (domToAnalyse) => {
 	const inputsWithoutTypeLi = inputsWithoutType ? `<li>${inputsWithoutType === 1 ? 'Existe' : 'Existem'} ${inputsWithoutType} ${inputsWithoutType === 1 ? 'input' : 'inputs'} sem type atribuído.</li>` : '';
 
 	return (`
-		<h3>Encontrar e se recuperar de erros</h3>
+		<h3>Prevenção de erros</h3>
 		<ul class="alerts-detected">
 			<li>${alertElements === 1 ? 'Existe' : 'Existem'} ${alertElements} ${alertElements === 1 ? 'elemento' : 'elementos'} de alerta na página${permanentActions ? `, além disso ${permanentActions > 1 ? `existem ${permanentActions} ações permanentes.` : `existe ${permanentActions} ação permanente.`}` : '.'}</li>
 			${formsWithoutSubmitLi}

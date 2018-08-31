@@ -26,7 +26,7 @@ const systemState = (domToAnalyse) => {
 	const permanentActionElements = domToAnalyse.querySelectorAll('[uxi-permanent-action]').length;
 
 	return (`
-		<h3>Ajuda e documentação</h3>
+		<h3>Visibilidade do estado do sistema</h3>
 		<ul class="alerts-detected">
 			<li>${systemStateElements === 1 ? 'Existe' : 'Existem'} ${systemStateElements} ${systemStateElements === 1 ? 'elemento' : 'elementos'} de visualiazação do estado do sistema.</li>
 			${pageTitleLi}

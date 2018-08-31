@@ -28,7 +28,7 @@ const helpAndDoc = (domToAnalyse) => {
 
 		inputsWithoutPlaceholderLi = `
 			<li>
-				Existem ${inputsWithoutPlaceholderCounter} inputs sem placeholder na funcionalidade.
+				${inputsWithoutPlaceholderCounter === 1 ? 'Existe 1 input sem placeholder na funcionalidade.' : `Existem ${inputsWithoutPlaceholderCounter} inputs sem placeholder na funcionalidade.`}
 				${inputsWithoutPlaceholderList}
 			</li>
 		`;
@@ -51,7 +51,7 @@ const helpAndDoc = (domToAnalyse) => {
 		`;
 		inputsWithoutLabelLi = `
 			<li>
-				Existem ${inputsWithoutLabel.length} inputs sem label na funcionalidade.
+				${inputsWithoutLabel.length === 1 ? 'Existe 1 input sem label na funcionalidade.' : `Existem ${inputsWithoutLabel.length} inputs sem label na funcionalidade.`}
 				${inputElementsList}
 			</li>
 		`;

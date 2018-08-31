@@ -20,10 +20,18 @@ const flexibility = (domToAnalyse) => {
 	}
 
 	let numberOfPaths = 0;
+	let pathLiArray = [];
 	for (const key in pathsObject) {
-		console.log(`O caminho ${key} precisa de ${pathsObject[key]} passos para ser finalizado.`);
+		pathLiArray.push(`<li>O caminho ${key} precisa de ${pathsObject[key]} passos para ser finalizado.</li>`);
 		numberOfPaths++;
 	}
-	console.log(`Essa funcionalidade possui ${numberOfPaths} caminhos possíveis para ser finalizada.`);
+
+	return (`
+		<h3>Flexibilidade e eficiência do uso</h3>
+		<ul class="alerts-detected">
+			<li>Essa funcionalidade possui ${numberOfPaths} ${numberOfPaths === 1 ? 'caminho possível' : 'caminhos possíveis'} para ser finalizada.</li>
+			${pathLiArray.join('\n')}
+		</ul>
+	`);
 
 };

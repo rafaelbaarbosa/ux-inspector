@@ -22,7 +22,7 @@ const flexibility = (domToAnalyse) => {
 	let numberOfPaths = 0;
 	let pathLiArray = [];
 	for (const key in pathsObject) {
-		pathLiArray.push(`<li>O caminho ${key} precisa de ${pathsObject[key]} passos para ser finalizado.</li>`);
+		pathLiArray.push(`<li>O caminho ${key} precisa de ${pathsObject[key]} ${pathsObject[key] === 1 ? 'passo' : 'passos'} para ser finalizado.</li>`);
 		numberOfPaths++;
 	}
 

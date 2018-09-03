@@ -20,14 +20,14 @@ const preventErrors = (domToAnalyse) => {
 
 		inputsWithoutType = inputsWithoutType + (form.querySelectorAll('input').length - form.querySelectorAll('input[type]').length);
 	}
-	const formsWithoutSubmitLi = formsWithoutSubmit ? `<li>${formsWithoutSubmit === 1 ? 'Existe' : 'Existem'} ${formsWithoutSubmit} ${formsWithoutSubmit === 1 ? 'formulário' : 'formulários'} sem nenhum elemento com type="submit".</li>` : '';
-	const formsWithoutRequiredInputsLi = formsWithoutRequiredInputs ? `<li>${formsWithoutRequiredInputs === 1 ? 'Existe' : 'Existem'} ${formsWithoutRequiredInputs} ${formsWithoutRequiredInputs === 1 ? 'formulário' : 'formulários'} sem nenhum elemento obrigatório.</li>` : '';
-	const inputsWithoutTypeLi = inputsWithoutType ? `<li>${inputsWithoutType === 1 ? 'Existe' : 'Existem'} ${inputsWithoutType} ${inputsWithoutType === 1 ? 'input' : 'inputs'} sem type atribuído.</li>` : '';
+	const formsWithoutSubmitLi = formsWithoutSubmit ? `<li class="collection-item">${formsWithoutSubmit === 1 ? 'Existe' : 'Existem'} ${formsWithoutSubmit} ${formsWithoutSubmit === 1 ? 'formulário' : 'formulários'} sem nenhum elemento com type="submit".</li>` : '';
+	const formsWithoutRequiredInputsLi = formsWithoutRequiredInputs ? `<li class="collection-item">${formsWithoutRequiredInputs === 1 ? 'Existe' : 'Existem'} ${formsWithoutRequiredInputs} ${formsWithoutRequiredInputs === 1 ? 'formulário' : 'formulários'} sem nenhum elemento obrigatório.</li>` : '';
+	const inputsWithoutTypeLi = inputsWithoutType ? `<li class="collection-item">${inputsWithoutType === 1 ? 'Existe' : 'Existem'} ${inputsWithoutType} ${inputsWithoutType === 1 ? 'input' : 'inputs'} sem type atribuído.</li>` : '';
 
 	return (`
-		<h3>Prevenção de erros</h3>
-		<ul class="alerts-detected">
-			<li>${alertElements === 1 ? 'Existe' : 'Existem'} ${alertElements} ${alertElements === 1 ? 'elemento' : 'elementos'} de alerta na página${permanentActions ? `, além disso ${permanentActions > 1 ? `existem ${permanentActions} ações permanentes.` : `existe ${permanentActions} ação permanente.`}` : '.'}</li>
+		<ul class="collection with-header alerts-detected">
+			<li class="collection-header"><h3>Prevenção de erros</h3></li>
+			<li class="collection-item">${alertElements === 1 ? 'Existe' : 'Existem'} ${alertElements} ${alertElements === 1 ? 'elemento' : 'elementos'} de alerta na página${permanentActions ? `, além disso ${permanentActions > 1 ? `existem ${permanentActions} ações permanentes.` : `existe ${permanentActions} ação permanente.`}` : '.'}</li>
 			${formsWithoutSubmitLi}
 			${formsWithoutRequiredInputsLi}
 			${inputsWithoutTypeLi}

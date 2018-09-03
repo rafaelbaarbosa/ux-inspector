@@ -10,16 +10,17 @@ const patternsAndFreedom = (domToAnalyse) => {
 	});
 	if (interactiveContentWithoutTabIndex.length > 0) {
 		const elementsInsideLi = interactiveContentWithoutTabIndex.map((element) => {
-			return `<li>${element.outerHTML}</li>`;
+			return `<li class="collection-item">${element.outerHTML}</li>`;
 		});
 		const elementsWithoutTabIndexList = `
-			<ul class="more-info-list">
+			<ul class="collection more-info-list">
 				${elementsInsideLi.join('\n')}
 			</ul>
 		`;
 		interactiveContentLi = `
-			<li>
+			<li class="collection-item">
 				${elementsInsideLi.length === 1 ? 'Existe 1 elemento interativo sem tabindex na funcionalidade.' : `Existem ${elementsInsideLi.length} elementos interativos sem tabindex na funcionalidade.`}
+				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action">Lista de elementos encontrados</button>
 				${elementsWithoutTabIndexList}
 			</li>
 		`;
@@ -80,8 +81,8 @@ const patternsAndFreedom = (domToAnalyse) => {
 			const brokenLinksLi = brokenLinks > 0 ? `${brokenLinks === 1 ? 'Existe 1 link quebrados na funcionalidade.' : `Existem ${brokenLinks} links quebrados na página.`}` : ``;
 			const connectionErrorsLi = connectionErrors > 0 ? `${connectionErrors === 1 ? 'Devido a erros de conexão, em 1 link da funcionalidade não foi possível testar se ele leva para alguma página.' : `Devido a erros de conexão, em ${connectionErrors} links da funcionalidade não foi possível testar se eles levam para alguma página.`}` : '';
 			return (`
-				<h3>Consistência e padronização | Liberdade de controle fácil para o usuário</h3>
-				<ul class="alerts-detected">
+				<ul class="collection with-header alerts-detected">
+					<li class="collection-header"><h3>Consistência e padronização | Liberdade de controle fácil para o usuário</h3></li>
 					${interactiveContentLi}
 					${brokenLinksLi}
 					${connectionErrorsLi}

@@ -34,36 +34,25 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 	// }
 
 	if (!request.getReport) {
-		// console.log('------- Ajuda e documentação -------');
 		const helpAndDocReport = helpAndDoc(document);
-		// console.log('------- Encontrar e se recuperar de erros -------');
 		const findAndUndoErrorsReport = findAndUndoErrors(document);
-		// console.log('------- Visibilidade do estado do sistema -------');
 		const systemStateReport = systemState(document);
-		// console.log('------- Prevenção de erros -------');
 		const preventErrorsReport = preventErrors(document);
-		// console.log('------- Flexibilidade e eficiência do uso -------');
 		const flexibilityReport = flexibility(document);
-		// console.log('------- Consistência e padronização | Liberdade de controle fácil para o usuário -------');
 		// patternsAndFreedom(document);
 		finalReport = `
-			<h2>Relaório de teste :D</h2>
-			<ul class="report">
+			<h2>Relatório de teste :D</h2>
+			<section class="reports">
 				${helpAndDocReport}
 				${findAndUndoErrorsReport}
 				${systemStateReport}
 				${preventErrorsReport}
 				${flexibilityReport}
-			</ul>
+			</section>
 		`;
 		sendResponse({data: data, success: true});
 	} else {
 		sendResponse({data: data, success: true, finalReport: finalReport});
 	}
 
-	// let data = flag ? 'Todas as imagens possuem ALT.' : 'Essa página possui uma ou mais imagens sem ALT.';
-
-	// if (!request.getData) {
-	// 	flag++;
-	// }
 });

@@ -3,3 +3,47 @@ body {
   width: 300px;
   height: 300px;
 }
+
+.final-result {
+	width: 100%;
+	height: 100%;
+}
+
+.final-result h1 {
+	font-size: 32px;
+}
+
+.final-result h2 {
+	font-size: 24px;
+}
+
+.final-result h3 {
+	font-size: 20px;
+}
+
+.final-result li {
+	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.final-result .more-info-list li {
+	font-size: 12px;
+	word-break: break-word;
+	display: list-item;
+}
+
+.final-result .more-info-list {
+	display: none;
+	width: 100%;
+}
+
+.final-result .more-info-list.openned {
+	display: block;
+}
+
+.final-result button.toggle-more-info {
+	font-size: 12px;
+}

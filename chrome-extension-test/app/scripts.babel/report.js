@@ -13,5 +13,16 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		for (let element of moreInfoObjects) {
 			element.parentElement.innerText = element.outerHTML;
 		}
+
+		const toggleBtns = Array.from(document.querySelectorAll('.toggle-more-info'));
+		for (let btn of toggleBtns) {
+			btn.addEventListener('click', (event) => {
+				if (event.target.nextSibling.nextSibling.classList.contains('openned')) {
+					event.target.nextSibling.nextSibling.classList.remove('openned');
+				} else {
+					event.target.nextSibling.nextSibling.classList.add('openned');
+				}
+			});
+		}
 	});
 });

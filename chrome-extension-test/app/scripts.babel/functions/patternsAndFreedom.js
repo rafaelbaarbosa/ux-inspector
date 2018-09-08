@@ -4,7 +4,7 @@ const patternsAndFreedom = (domToAnalyse) => {
 
 	// Analisa se os elementos com tabindex são conteúdos interativos ou não
 	let interactiveContentLi = ``;
-	const interactiveContent = domToAnalyse.querySelectorAll('audio, img, input, menu, object, video, a, button, details, embed, iframe, label, select, textarea');
+	const interactiveContent = Array.from(domToAnalyse.querySelectorAll('audio, img, input, menu, object, video, a, button, details, embed, iframe, label, select, textarea'));
 	const interactiveContentWithoutTabIndex = interactiveContent.filter((element) => {
 		return !element.getAttribute('tabindex');
 	});
@@ -33,7 +33,7 @@ const patternsAndFreedom = (domToAnalyse) => {
 			let result = 0;
 			xhr.onreadystatechange = () => {
 				if (xhr.readyState === 4) {
-					result = xhr.status < 400 ? 1 : 0;
+					result = xhr.status === 404 ? 0 : 1;
 				}
 			};
 			xhr.onerror = () => {
@@ -43,10 +43,8 @@ const patternsAndFreedom = (domToAnalyse) => {
 				resolve(result);
 			};
 
-			setTimeout(() => {
-				xhr.open('HEAD', url);
-				xhr.send();
-			}, 2000);
+			xhr.open('HEAD', url);
+			xhr.send();
 		});
 	}
 
@@ -55,40 +53,44 @@ const patternsAndFreedom = (domToAnalyse) => {
 	const links = Array.from(domToAnalyse.querySelectorAll('a'));
 	let promises = [];
 
-	for(let i = 0; i < links.length - 1; i++){
-		(function(i){
-			setTimeout(() => {
-				let promise = urlExists(links[i].href);
-				promises.push(promise.then(JSON.parse));
-			},1000 * i);
-		}(i));
-	}
+	return new Promise((resolve, reject) => {
+		for(let i = 0; i < links.length - 1; i++){
+			(function(i){
+				setTimeout(() => {
+					let promise = urlExists(links[i].href);
+					promises.push(promise.then(JSON.parse));
+				}, 1000 * i);
+			}(i));
+		}
 
-	setTimeout(() => {
-		Promise.all(promises).then((results) => {
-			for (let result of results) {
-				switch (result) {
-					case -1: // não conseguiu se conectar para obter resposta
-						connectionErrors++;
-						break;
-					case 0: // o link não foi encontrado
-						brokenLinks++;
-					case 1:
-					default:
-						break;
+		setTimeout(() => {
+			Promise.all(promises).then((results) => {
+				for (let result of results) {
+					switch (result) {
+						case -1: // não conseguiu se conectar para obter resposta
+							connectionErrors++;
+							break;
+						case 0: // o link não foi encontrado
+							brokenLinks++;
+						case 1:
+						default:
+							break;
+					}
 				}
-			}
-			const brokenLinksLi = brokenLinks > 0 ? `${brokenLinks === 1 ? 'Existe 1 link quebrados na funcionalidade.' : `Existem ${brokenLinks} links quebrados na página.`}` : ``;
-			const connectionErrorsLi = connectionErrors > 0 ? `${connectionErrors === 1 ? 'Devido a erros de conexão, em 1 link da funcionalidade não foi possível testar se ele leva para alguma página.' : `Devido a erros de conexão, em ${connectionErrors} links da funcionalidade não foi possível testar se eles levam para alguma página.`}` : '';
-			return (`
-				<ul class="collection with-header alerts-detected">
-					<li class="collection-header"><h3>Consistência e padronização | Liberdade de controle fácil para o usuário</h3></li>
-					${interactiveContentLi}
-					${brokenLinksLi}
-					${connectionErrorsLi}
-				</ul>
-			`);
-		});
-	}, 1001 * links.length);
+				const brokenLinksLi = brokenLinks > 0 ? `${brokenLinks === 1 ? 'Existe 1 link quebrado na funcionalidade.' : `Existem ${brokenLinks} links quebrados na página.`}` : ``;
+				const connectionErrorsLi = connectionErrors > 0 ? `${connectionErrors === 1 ? 'Devido a erros de conexão, em 1 link da funcionalidade não foi possível testar se ele leva para alguma página.' : `Devido a erros de conexão, em ${connectionErrors} links da funcionalidade não foi possível testar se eles levam para alguma página.`}` : '';
+				resolve(`
+					<ul class="collection with-header alerts-detected">
+						<li class="collection-header"><h3>Consistência e padronização | Liberdade de controle fácil para o usuário</h3></li>
+						${interactiveContentLi}
+						<li class="collection-item">${brokenLinksLi}</li>
+						<li class="collection-item">${connectionErrorsLi}</li>
+					</ul>
+				`);
+			});
+		}, 1001 * links.length);
+	
+		
+	});
 
 };

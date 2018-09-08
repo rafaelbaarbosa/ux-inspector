@@ -16,6 +16,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 	const preventErrors = eval(request.preventErrors);
 	const patternsAndFreedom = eval(request.patternsAndFreedom);
 	const flexibility = eval(request.flexibility);
+	let promises = [];
 
 	// for (const func of funcs){
 	// 	console.log(`-------------- Análise da funcionalidade: ${func.getAttribute('uxi-func')}`);
@@ -39,20 +40,29 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 		const systemStateReport = systemState(document);
 		const preventErrorsReport = preventErrors(document);
 		const flexibilityReport = flexibility(document);
-		// patternsAndFreedom(document);
-		finalReport = `
-			<h2>Relatório de teste :D</h2>
-			<section class="reports">
+
+		let promises = [];
+		promises.push(patternsAndFreedom(document));
+
+		Promise.all(promises).then((results) => {
+			finalReport = `
+				<h2>Relatório de teste :D</h2>
+				<section class="reports">
 				${helpAndDocReport}
 				${findAndUndoErrorsReport}
 				${systemStateReport}
 				${preventErrorsReport}
 				${flexibilityReport}
-			</section>
-		`;
-		sendResponse({data: data, success: true});
+				${results[0]}
+				</section>
+			`;
+			sendResponse({data: data, success: true});
+		});
+
 	} else {
 		sendResponse({data: data, success: true, finalReport: finalReport});
 	}
+
+	return true;
 
 });

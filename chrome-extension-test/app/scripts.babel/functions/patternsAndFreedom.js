@@ -63,6 +63,8 @@ const patternsAndFreedom = (domToAnalyse) => {
 			}(i));
 		}
 
+		console.log(links.length);
+
 		setTimeout(() => {
 			Promise.all(promises).then((results) => {
 				for (let result of results) {

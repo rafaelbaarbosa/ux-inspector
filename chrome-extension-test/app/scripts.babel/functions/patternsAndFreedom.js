@@ -22,7 +22,7 @@ const patternsAndFreedom = (domToAnalyse) => {
 		interactiveContentLi = `
 			<li class="collection-item">
 				<span class="description"><i class="material-icons alert-icon">warning</i>${elementsInsideLi.length === 1 ? 'Existe 1 elemento interativo sem tabindex na funcionalidade.' : `Existem ${elementsInsideLi.length} elementos interativos sem tabindex na funcionalidade.`}</span>
-				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action">Lista de elementos encontrados</button>
+				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action"><i class="material-icons">expand_more</i><i class="material-icons hide">expand_less</i></button>
 				${elementsWithoutTabIndexList}
 			</li>
 		`;

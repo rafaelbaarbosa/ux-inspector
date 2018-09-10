@@ -34,10 +34,15 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		const toggleBtns = Array.from(document.querySelectorAll('.toggle-more-info'));
 		for (let btn of toggleBtns) {
 			btn.addEventListener('click', (event) => {
+				console.log(event.target);
 				if (event.target.nextSibling.nextSibling.classList.contains('openned')) {
 					event.target.nextSibling.nextSibling.classList.remove('openned');
+					event.target.querySelector('i:first-child').classList.remove('hide');
+					event.target.querySelector('i:last-child').classList.add('hide');
 				} else {
 					event.target.nextSibling.nextSibling.classList.add('openned');
+					event.target.querySelector('i:first-child').classList.add('hide');
+					event.target.querySelector('i:last-child').classList.remove('hide');
 				}
 			});
 		}

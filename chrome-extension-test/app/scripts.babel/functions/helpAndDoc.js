@@ -33,7 +33,7 @@ const helpAndDoc = (domToAnalyse) => {
 		inputsWithoutPlaceholderLi = `
 			<li class="collection-item">
 				<span class="description"><i class="material-icons alert-icon">warning</i>${inputsWithoutPlaceholderCounter === 1 ? 'Existe 1 input sem placeholder na funcionalidade.' : `Existem ${inputsWithoutPlaceholderCounter} inputs sem placeholder na funcionalidade.`}</span>
-				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action">Lista de elementos encontrados</button>
+				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action"><i class="material-icons">expand_more</i><i class="material-icons hide">expand_less</i></button>
 				${inputsWithoutPlaceholderList}
 			</li>
 		`;
@@ -58,7 +58,7 @@ const helpAndDoc = (domToAnalyse) => {
 		inputsWithoutLabelLi = `
 			<li class="collection-item">
 				<span class="description"><i class="material-icons alert-icon">warning</i>${inputsWithoutLabel.length === 1 ? 'Existe 1 input sem label na funcionalidade.' : `Existem ${inputsWithoutLabel.length} inputs sem label na funcionalidade.`}</span>
-				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action">Lista de elementos encontrados</button>
+				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action"><i class="material-icons">expand_more</i><i class="material-icons hide">expand_less</i></button>
 				${inputElementsList}
 			</li>
 		`;
@@ -96,7 +96,7 @@ const helpAndDoc = (domToAnalyse) => {
 		imgsWithoutAltLi = `
 			<li class="collection-item">
 				<span class="description"><i class="material-icons alert-icon">warning</i>De ${imgsArray.length} ${imgsArray.length > 1 ? 'imagens utilizadas' : 'imagem utilizada'} na funcionalidade ${imgsWithoutAlt.length} não ${imgsWithoutAlt.length > 1 ? 'possuem' : 'possui'} texto alternativo.</span>
-				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action">Lista de elementos encontrados</button>
+				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action"><i class="material-icons">expand_more</i><i class="material-icons hide">expand_less</i></button>
 				${imgElementsList}
 			</li>
 		`;

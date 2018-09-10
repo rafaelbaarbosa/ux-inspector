@@ -1,6 +1,8 @@
 'use strict';
 
 const patternsAndFreedom = (domToAnalyse) => {
+	let infoCounter = 0;
+	let alertCounter = 0;
 
 	// Analisa se os elementos com tabindex são conteúdos interativos ou não
 	let interactiveContentLi = ``;
@@ -19,11 +21,13 @@ const patternsAndFreedom = (domToAnalyse) => {
 		`;
 		interactiveContentLi = `
 			<li class="collection-item">
-				${elementsInsideLi.length === 1 ? 'Existe 1 elemento interativo sem tabindex na funcionalidade.' : `Existem ${elementsInsideLi.length} elementos interativos sem tabindex na funcionalidade.`}
+				<span class="description"><i class="material-icons alert-icon">warning</i>${elementsInsideLi.length === 1 ? 'Existe 1 elemento interativo sem tabindex na funcionalidade.' : `Existem ${elementsInsideLi.length} elementos interativos sem tabindex na funcionalidade.`}</span>
 				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action">Lista de elementos encontrados</button>
 				${elementsWithoutTabIndexList}
 			</li>
 		`;
+
+		alertCounter++;
 	}
 
 	// Analisa links e se eles estão quebrados ou não
@@ -79,14 +83,29 @@ const patternsAndFreedom = (domToAnalyse) => {
 							break;
 					}
 				}
-				const brokenLinksLi = brokenLinks > 0 ? `${brokenLinks === 1 ? 'Existe 1 link quebrado na funcionalidade.' : `Existem ${brokenLinks} links quebrados na página.`}` : ``;
-				const connectionErrorsLi = connectionErrors > 0 ? `${connectionErrors === 1 ? 'Devido a erros de conexão, em 1 link da funcionalidade não foi possível testar se ele leva para alguma página.' : `Devido a erros de conexão, em ${connectionErrors} links da funcionalidade não foi possível testar se eles levam para alguma página.`}` : '';
+
+				let brokenLinksLi = ``;
+				if (brokenLinks) {
+					alertCounter++;
+					brokenLinksLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>${brokenLinks === 1 ? 'Existe 1 link quebrado na funcionalidade.' : `Existem ${brokenLinks} links quebrados na página.`}</span></li>`;
+				}
+
+				let connectionErrorsLi = ``;
+				if (connectionErrors) {
+					infoCounter++;
+					connectionErrorsLi = `<li class="collection-item"><span class="description"><i class="material-icons info-icon">info</i>${connectionErrors === 1 ? 'Devido a erros de conexão, em 1 link da funcionalidade não foi possível testar se ele leva para alguma página.' : `Devido a erros de conexão, em ${connectionErrors} links da funcionalidade não foi possível testar se eles levam para alguma página.`}</span></li>`;
+				}
+
+				const infosMsg = `${infoCounter > 0 ? `<i class="material-icons info-icon">info</i>${infoCounter === 1 ? '1 informação' : `${infoCounter} informações`}` : ''}`;
+				const alertsMsg = `${alertCounter > 0 ? `<i class="material-icons alert-icon">warning</i>${alertCounter === 1 ? '1 alerta' : `${alertCounter} alertas`}` : ''}`;
+				const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(infoCounter && alertCounter) ? 'e' : ''} ${alertsMsg}</span>`;
+
 				resolve(`
 					<ul class="collection with-header alerts-detected">
-						<li class="collection-header"><h3>Consistência e padronização | Liberdade de controle fácil para o usuário</h3></li>
+						<li class="collection-header"><h3>Consistência e padronização | Liberdade de controle fácil para o usuário // ${alertsAndInfosMsg}</h3></li>
 						${interactiveContentLi}
-						<li class="collection-item">${brokenLinksLi}</li>
-						<li class="collection-item">${connectionErrorsLi}</li>
+						${brokenLinksLi}
+						${connectionErrorsLi}
 					</ul>
 				`);
 			});

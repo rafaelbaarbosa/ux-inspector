@@ -9,6 +9,22 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 	chrome.tabs.sendMessage(tabs[0].id, message, function(response) {
 		document.getElementById('pfvr-vai').innerHTML = response.finalReport;
 
+		const date = new Date();
+		const monthNames = [
+			'Janeiro', 'Fevereiro', 'Março',
+			'Abril', 'Maio', 'Junho', 'Julho',
+			'Agosto', 'Setembro', 'Outubro',
+			'Novembro', 'Dezembro'
+		];
+	
+		const day = date.getDate();
+		const monthIndex = date.getMonth();
+		const year = date.getFullYear();
+		const hours = date.getHours();
+		const minutes = date.getMinutes();
+
+		document.getElementById('subtitle-date').innerText = `Resultados da inspeção feita em ${day} de ${monthNames[monthIndex]} de ${year} às ${hours}:${minutes}`;
+
 		const moreInfoObjects = document.querySelectorAll('.more-info-list li');
 		for (let element of moreInfoObjects) {
 			const insideElementString = element.innerHTML;

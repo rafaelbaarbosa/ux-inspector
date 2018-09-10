@@ -1,14 +1,18 @@
 'use strict';
 
 const helpAndDoc = (domToAnalyse) => {
+	let infoCounter = 0;
+	let alertCounter = 0;
 
 	const inputsArray = Array.from(domToAnalyse.querySelectorAll('input'));
 
 	// Verifica se existe nav
 	const navsCollection = domToAnalyse.getElementsByTagName('nav');
 	let navsLi = ``;
-	if (!navsCollection.length)
-		navsLi = `<li class="collection-item">Funcionalidade não possui nenhum elemento NAV.</li>`;
+	if (!navsCollection.length){
+		navsLi = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui nenhum elemento nav.</span>`;
+		alertCounter++;
+	}
 
 	// Verifica se existem inputs sem placeholder
 	const inputsWithoutPlaceholderCounter = domToAnalyse.querySelectorAll('input').length - domToAnalyse.querySelectorAll('input[placeholder]').length;
@@ -28,12 +32,13 @@ const helpAndDoc = (domToAnalyse) => {
 
 		inputsWithoutPlaceholderLi = `
 			<li class="collection-item">
-				${inputsWithoutPlaceholderCounter === 1 ? 'Existe 1 input sem placeholder na funcionalidade.' : `Existem ${inputsWithoutPlaceholderCounter} inputs sem placeholder na funcionalidade.`}
+				<span class="description"><i class="material-icons alert-icon">warning</i>${inputsWithoutPlaceholderCounter === 1 ? 'Existe 1 input sem placeholder na funcionalidade.' : `Existem ${inputsWithoutPlaceholderCounter} inputs sem placeholder na funcionalidade.`}</span>
 				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action">Lista de elementos encontrados</button>
 				${inputsWithoutPlaceholderList}
 			</li>
 		`;
 
+		alertCounter++;
 	}
 
 	// Verifica se existem inputs sem label
@@ -52,16 +57,25 @@ const helpAndDoc = (domToAnalyse) => {
 		`;
 		inputsWithoutLabelLi = `
 			<li class="collection-item">
-				${inputsWithoutLabel.length === 1 ? 'Existe 1 input sem label na funcionalidade.' : `Existem ${inputsWithoutLabel.length} inputs sem label na funcionalidade.`}
+				<span class="description"><i class="material-icons alert-icon">warning</i>${inputsWithoutLabel.length === 1 ? 'Existe 1 input sem label na funcionalidade.' : `Existem ${inputsWithoutLabel.length} inputs sem label na funcionalidade.`}</span>
 				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action">Lista de elementos encontrados</button>
 				${inputElementsList}
 			</li>
 		`;
+
+		alertCounter++;
 	}
 
 	// Verifica se existem elementos de ajuda
 	const helpElements = domToAnalyse.querySelectorAll('[uxi-help]').length + domToAnalyse.querySelectorAll('[rel="help"]').length;
-	const helpElementsLi = `<li class="collection-item">Existem ${helpElements} elementos de ajuda na página.</li>`;
+	let helpElementsLi = ``;
+	if (helpElements === 0) {
+		alertCounter++;
+		helpElementsLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui nenhum elemento de ajuda.</span></li>`;
+	} else {
+		infoCounter++;
+		helpElementsLi = `<li class="collection-item"><span class="description"><i class="material-icons info-icon">info</i>${helpElements === 1 ? 'Existe' : 'Existem'} ${helpElements} ${helpElements === 1 ? 'elemento' : 'elementos'} de ajuda na funcionalidade.</span></li>`;
+	}
 
 	// Verifica se imagens possuem alt
 	const imgsArray = Array.from(domToAnalyse.querySelectorAll('img'));
@@ -81,16 +95,22 @@ const helpAndDoc = (domToAnalyse) => {
 		`;
 		imgsWithoutAltLi = `
 			<li class="collection-item">
-				De ${imgsArray.length} ${imgsArray.length > 1 ? 'imagens utilizadas' : 'imagem utilizada'} na funcionalidade ${imgsWithoutAlt.length} não ${imgsWithoutAlt.length > 1 ? 'possuem' : 'possui'} texto alternativo.
+				<span class="description"><i class="material-icons alert-icon">warning</i>De ${imgsArray.length} ${imgsArray.length > 1 ? 'imagens utilizadas' : 'imagem utilizada'} na funcionalidade ${imgsWithoutAlt.length} não ${imgsWithoutAlt.length > 1 ? 'possuem' : 'possui'} texto alternativo.</span>
 				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action">Lista de elementos encontrados</button>
 				${imgElementsList}
 			</li>
 		`;
+
+		alertCounter++;
 	}
+
+	const infosMsg = `${infoCounter > 0 ? `<i class="material-icons info-icon">info</i>${infoCounter === 1 ? '1 informação' : `${infoCounter} informações`}` : ''}`;
+	const alertsMsg = `${alertCounter > 0 ? `<i class="material-icons alert-icon">warning</i>${alertCounter === 1 ? '1 alerta' : `${alertCounter} alertas`}` : ''}`;
+	const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(infoCounter && alertCounter) ? 'e' : ''} ${alertsMsg}</span>`
 
 	return (`
 		<ul class="collection with-header alerts-detected">
-			<li class="collection-header"><h3>Ajuda e documentação</h3></li>
+			<li class="collection-header"><h3>Ajuda e documentação // ${alertsAndInfosMsg}</h3></li>
 			${navsLi}
 			${inputsWithoutPlaceholderLi}
 			${inputsWithoutLabelLi}

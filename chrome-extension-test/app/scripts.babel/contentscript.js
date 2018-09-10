@@ -43,7 +43,6 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 
 		let promises = [];
 		promises.push(patternsAndFreedom(document));
-
 		Promise.all(promises).then((results) => {
 			finalReport = `
 				<h2>Relatório de teste :D</h2>
@@ -58,6 +57,18 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 			`;
 			sendResponse({data: data, success: true});
 		});
+
+		// finalReport = `
+		// 	<h2>Relatório de funcionalidade teste :D</h2>
+		// 	<section class="reports">
+		// 		${helpAndDocReport}
+		// 		${findAndUndoErrorsReport}
+		// 		${systemStateReport}
+		// 		${preventErrorsReport}
+		// 		${flexibilityReport}
+		// 	</section>
+		// `;
+		// sendResponse({data: data, success: true});
 
 	} else {
 		sendResponse({data: data, success: true, finalReport: finalReport});

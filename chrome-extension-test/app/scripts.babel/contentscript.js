@@ -83,7 +83,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 		}
 
 	} else {
-		sendResponse({data: data, success: true, finalReport: finalReport});
+		sendResponse({data: data, success: true, finalReport: finalReport, pageUrl: window.location.href});
 	}
 
 	return true;

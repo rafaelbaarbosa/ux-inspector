@@ -50,6 +50,10 @@ body {
 	font-weight: bold;
 }
 
+#subtitle-date .url {
+	font-style: italic;
+}
+
 .final-result h3 {
 	font-size: 20px;
 	display: flex;
@@ -128,4 +132,9 @@ span.infos-and-alerts {
 span.infos-and-alerts i {
 	margin: 0 4px;
 	font-size: 20px;
+}
+
+.principle-description {
+	margin: 0;
+	font-size: 14px;
 }

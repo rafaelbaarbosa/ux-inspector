@@ -23,7 +23,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		const hours = date.getHours();
 		const minutes = date.getMinutes();
 
-		document.getElementById('subtitle-date').innerText = `Resultados da inspeção feita em ${day} de ${monthNames[monthIndex]} de ${year} às ${hours}:${minutes}`;
+		document.getElementById('subtitle-date').innerHTML = `Resultados da inspeção feita na página <span class="url">${response.pageUrl}</span> em ${day} de ${monthNames[monthIndex]} de ${year} às ${hours < 10 ? `0${hours}` : `${hours}`}:${minutes < 10 ? `0${minutes}` : `${minutes}`}`;
 
 		const moreInfoObjects = document.querySelectorAll('.more-info-list li');
 		for (let element of moreInfoObjects) {

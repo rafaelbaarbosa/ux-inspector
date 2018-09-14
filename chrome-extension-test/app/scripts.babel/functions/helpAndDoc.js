@@ -10,7 +10,7 @@ const helpAndDoc = (domToAnalyse) => {
 	const navsCollection = domToAnalyse.getElementsByTagName('nav');
 	let navsLi = ``;
 	if (!navsCollection.length){
-		navsLi = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui nenhum elemento nav.</span>`;
+		navsLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui nenhum elemento nav.</span></li>`;
 		alertCounter++;
 	}
 
@@ -106,17 +106,22 @@ const helpAndDoc = (domToAnalyse) => {
 
 	const infosMsg = `${infoCounter > 0 ? `<i class="material-icons info-icon">info</i>${infoCounter === 1 ? '1 informação' : `${infoCounter} informações`}` : ''}`;
 	const alertsMsg = `${alertCounter > 0 ? `<i class="material-icons alert-icon">warning</i>${alertCounter === 1 ? '1 alerta' : `${alertCounter} alertas`}` : ''}`;
-	const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(infoCounter && alertCounter) ? 'e' : ''} ${alertsMsg}</span>`
-
-	return (`
+	const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(infoCounter && alertCounter) ? 'e' : ''} ${alertsMsg}</span>`;
+	const report = `
 		<ul class="collection with-header alerts-detected">
-			<li class="collection-header"><h3>Ajuda e documentação // ${alertsAndInfosMsg}</h3></li>
+			<li class="collection-header">
+				<h3>Ajuda e documentação // ${alertsAndInfosMsg}</h3>
+				<p class="principle-description">Descrição bem explicada de cada princípio para que cada pessoa entenda muito bem o que tem de errado em sua funcionalidade, nossa como isso ficou bem explicado não é mesmo? wow, quanta explicação. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pretium metus purus, vitae efficitur sem lacinia in. Pellentesque mattis lorem eu urna rutrum rutrum. Duis vel dui at est lobortis auctor. Aliquam bibendum felis tempor aliquam condimentum. Praesent sit amet eleifend est.</p>
+			</li>
 			${navsLi}
 			${inputsWithoutPlaceholderLi}
 			${inputsWithoutLabelLi}
 			${helpElementsLi}
 			${imgsWithoutAltLi}
 		</ul>
-	`);
+	`;
+	const result = {report: report, alertCounter: alertCounter, infoCounter: infoCounter};
+
+	return result;
 
 };

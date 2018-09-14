@@ -40,14 +40,16 @@ const flexibility = (domToAnalyse) => {
 
 	const infosMsg = `${infoCounter > 0 ? `<i class="material-icons info-icon">info</i>${infoCounter === 1 ? '1 informação' : `${infoCounter} informações`}` : ''}`;
 	const alertsMsg = `${alertCounter > 0 ? `<i class="material-icons alert-icon">warning</i>${alertCounter === 1 ? '1 alerta' : `${alertCounter} alertas`}` : ''}`;
-	const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(infoCounter && alertCounter) ? 'e' : ''} ${alertsMsg}</span>`
-
-	return (`
+	const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(infoCounter && alertCounter) ? 'e' : ''} ${alertsMsg}</span>`;
+	const report = `
 		<ul class="collection with-header alerts-detected">
 			<li class="collection-header"><h3>Flexibilidade e eficiência do uso // ${alertsAndInfosMsg}</h3></li>
 			<li class="collection-item">${pathsMsg}</li>
 			${pathLiArray.join('\n')}
 		</ul>
-	`);
+	`;
+	const result = {report: report, alertCounter: alertCounter, infoCounter: infoCounter};
+
+	return result;
 
 };

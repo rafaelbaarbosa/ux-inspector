@@ -99,15 +99,17 @@ const patternsAndFreedom = (domToAnalyse) => {
 				const infosMsg = `${infoCounter > 0 ? `<i class="material-icons info-icon">info</i>${infoCounter === 1 ? '1 informação' : `${infoCounter} informações`}` : ''}`;
 				const alertsMsg = `${alertCounter > 0 ? `<i class="material-icons alert-icon">warning</i>${alertCounter === 1 ? '1 alerta' : `${alertCounter} alertas`}` : ''}`;
 				const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(infoCounter && alertCounter) ? 'e' : ''} ${alertsMsg}</span>`;
-
-				resolve(`
+				const report = `
 					<ul class="collection with-header alerts-detected">
 						<li class="collection-header"><h3>Consistência e padronização | Liberdade de controle fácil para o usuário // ${alertsAndInfosMsg}</h3></li>
 						${interactiveContentLi}
 						${brokenLinksLi}
 						${connectionErrorsLi}
 					</ul>
-				`);
+				`;
+				const result = {report: report, alertCounter: alertCounter, infoCounter: infoCounter};
+
+				resolve(result);
 			});
 		}, 1001 * links.length);
 	

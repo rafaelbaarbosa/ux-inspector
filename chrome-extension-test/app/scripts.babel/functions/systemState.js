@@ -81,8 +81,7 @@ const systemState = (domToAnalyse) => {
 	const infosMsg = `${infoCounter > 0 ? `<i class="material-icons info-icon">info</i>${infoCounter === 1 ? '1 informação' : `${infoCounter} informações`}` : ''}`;
 	const alertsMsg = `${alertCounter > 0 ? `<i class="material-icons alert-icon">warning</i>${alertCounter === 1 ? '1 alerta' : `${alertCounter} alertas`}` : ''}`;
 	const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(infoCounter && alertCounter) ? 'e' : ''} ${alertsMsg}</span>`;
-
-	return (`
+	const report = `
 		<ul class="collection with-header alerts-detected">
 			<li class="collection-header"><h3>Visibilidade do estado do sistema // ${alertsAndInfosMsg}</h3></li>
 			<li class="collection-item">${systemStateMsg}</li>
@@ -93,6 +92,10 @@ const systemState = (domToAnalyse) => {
 			<li class="collection-item">${cancelActionMsg}</li>
 			<li class="collection-item">${permanentActionMsg}</li>
 		</ul>
-	`);
+	`;
+
+	const result = {report: report, alertCounter: alertCounter, infoCounter: infoCounter};
+
+	return result;
 
 };

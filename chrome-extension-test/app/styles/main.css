@@ -44,6 +44,10 @@ body {
 	color: #7460ee;
 }
 
+.final-result h2.func-name {
+	margin-bottom: 8px;
+}
+
 #subtitle-date {
 	padding: 0 20px;
 	font-size: 28px;
@@ -57,6 +61,11 @@ body {
 .final-result h3 {
 	font-size: 20px;
 	display: flex;
+}
+
+.final-result h3.total-alerts-infos {
+	margin: 0 0 8px;
+	font-size: 16px;
 }
 
 .final-result .more-info-list li {

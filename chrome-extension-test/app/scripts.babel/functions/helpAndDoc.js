@@ -111,7 +111,6 @@ const helpAndDoc = (domToAnalyse) => {
 		<ul class="collection with-header alerts-detected">
 			<li class="collection-header">
 				<h3>Ajuda e documentação // ${alertsAndInfosMsg}</h3>
-				<p class="principle-description">Descrição bem explicada de cada princípio para que cada pessoa entenda muito bem o que tem de errado em sua funcionalidade, nossa como isso ficou bem explicado não é mesmo? wow, quanta explicação. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pretium metus purus, vitae efficitur sem lacinia in. Pellentesque mattis lorem eu urna rutrum rutrum. Duis vel dui at est lobortis auctor. Aliquam bibendum felis tempor aliquam condimentum. Praesent sit amet eleifend est.</p>
 			</li>
 			${navsLi}
 			${inputsWithoutPlaceholderLi}

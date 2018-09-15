@@ -58,7 +58,7 @@ const patternsAndFreedom = (domToAnalyse) => {
 	let promises = [];
 
 	return new Promise((resolve, reject) => {
-		for(let i = 0; i < links.length - 1; i++){
+		for(let i = 0; i < links.length; i++){
 			(function(i){
 				setTimeout(() => {
 					let promise = urlExists(links[i].href);
@@ -66,8 +66,6 @@ const patternsAndFreedom = (domToAnalyse) => {
 				}, 1000 * i);
 			}(i));
 		}
-
-		console.log(links.length);
 
 		setTimeout(() => {
 			Promise.all(promises).then((results) => {

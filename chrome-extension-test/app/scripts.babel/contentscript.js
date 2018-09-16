@@ -71,7 +71,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 					}
 		
 					finalReport = `
-						<h2>${funcs.length === 1 ? `A funcionalidade ${funcsTitles[0]} foi encontrada e, a seguir, as questões de usabilidade dela serão apresentadas.` : `Foram encontradas as funcionalidades ${funcsTitles.join(', ')} e, a seguir, as questões de usabilidade de cada uma delas serão apresentadas.`}</h2>
+						<h2>${funcs.length === 1 ? `A funcionalidade ${funcsTitles[0]} foi encontrada e, a seguir, as questões de usabilidade dela serão apresentadas.` : `Foram encontradas as funcionalidades ${funcsTitles.join('/')} e, a seguir, as questões de usabilidade de cada uma delas serão apresentadas.`}</h2>
 						${reports.join('\n')}
 					`;
 					sendResponse({data: data, success: true});

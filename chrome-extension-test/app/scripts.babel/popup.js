@@ -42,17 +42,30 @@ const message = {
 let el = document.getElementById('btn'); 
 el.addEventListener('click', function() {
 
-	document.querySelector('h1').innerHTML = 'Carregando...';
+	document.querySelector('#btn').classList.add('hide');
+	document.querySelector('#progress-bar').classList.remove('hide');
 
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 	  chrome.tabs.sendMessage(tabs[0].id, {getTotalLinks: true, linksCounter: stringifiedLinksCounterFunc}, function(response) {
-			console.log(response.totalLinks);
+			let progressWidth = 0;
+			const time = response.totalLinks + 5;
+
+			for(let i = 0; i < time; i++){
+				(function(i){
+					setTimeout(() => {
+						progressWidth = progressWidth + (100/time);
+						document.querySelector('#progress-bar .determinate').style.width = `${progressWidth}%`;
+					}, 1000 * i);
+				}(i));
+			}
+
 		});
 	});
 
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 	  chrome.tabs.sendMessage(tabs[0].id, message, function(response) {
-	    document.querySelector('h1').innerHTML = 'Pronto :)';
+			document.querySelector('#progress-bar').classList.add('hide');
+	    document.querySelector('.finishing-msg').classList.remove('hide');
 	    console.log('-----------');
 	    console.log(response);
 	    console.log('success');

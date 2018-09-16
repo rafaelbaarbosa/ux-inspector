@@ -6,17 +6,36 @@
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css styles/main.css -->
+		<!-- build:css styles/main.css -->
     <link href="styles/main.css" rel="stylesheet">
     <!-- endbuild -->
-  </head>
-  <body>
-    <h1>UX Inspector</h1>
+	</head>
+	<body class="popup-body">
+		<header>
+			<h1>UX Inspector</h1>
+			<img src="images/icon.png" />
+			<div class="logo-background"></div>
+		</header>
 
-    <div id="id1">-</div>
-    <button id="btn">Gerar relatório</button>
+		<div class="bounds">
 
-    <!-- build:js scripts/popup-vendor.js -->
+			<button id="btn" class="waves-effect waves-light btn">Gerar relatório</button>
+
+			<div id="progress-bar" class="progress-bar hide">
+				<div class="progress">
+					<div class="determinate" style="width: 0%"></div>
+				</div>
+				<span class="warning">Por favor não feche o popup durante o carregamento.</span>
+			</div>
+
+			<div class="finishing-msg hide">
+				<h2>Pronto :)</h2>
+				<p>Uma nova aba com o título "Relatório UX-Inspector" foi aberta com os resultados encontrados.</p>
+			</div>
+
+		</div>
+
+		<!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
@@ -24,5 +43,5 @@
     <!-- build:js scripts/popup.js -->
     <script src="scripts/popup.js"></script>
     <!-- endbuild -->
-  </body>
+	</body>
 </html>

@@ -10,7 +10,7 @@ const helpAndDoc = (domToAnalyse) => {
 	const navsCollection = domToAnalyse.getElementsByTagName('nav');
 	let navsLi = ``;
 	if (!navsCollection.length){
-		navsLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui nenhum elemento nav.</span></li>`;
+		navsLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento <code>nav</code>.</span></li>`;
 		alertCounter++;
 	}
 
@@ -32,7 +32,7 @@ const helpAndDoc = (domToAnalyse) => {
 
 		inputsWithoutPlaceholderLi = `
 			<li class="collection-item">
-				<span class="description"><i class="material-icons alert-icon">warning</i>${inputsWithoutPlaceholderCounter === 1 ? 'Existe 1 input sem placeholder na funcionalidade.' : `Existem ${inputsWithoutPlaceholderCounter} inputs sem placeholder na funcionalidade.`}</span>
+				<span class="description"><i class="material-icons alert-icon">warning</i>${inputsWithoutPlaceholderCounter === 1 ? 'Existe 1 <code>input</code> sem <code>placeholder</code> na funcionalidade.' : `Existem ${inputsWithoutPlaceholderCounter} <code>inputs</code> sem <code>placeholder</code> na funcionalidade.`}</span>
 				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action"><i class="material-icons">expand_more</i><i class="material-icons hide">expand_less</i></button>
 				${inputsWithoutPlaceholderList}
 			</li>
@@ -57,7 +57,7 @@ const helpAndDoc = (domToAnalyse) => {
 		`;
 		inputsWithoutLabelLi = `
 			<li class="collection-item">
-				<span class="description"><i class="material-icons alert-icon">warning</i>${inputsWithoutLabel.length === 1 ? 'Existe 1 input sem label na funcionalidade.' : `Existem ${inputsWithoutLabel.length} inputs sem label na funcionalidade.`}</span>
+				<span class="description"><i class="material-icons alert-icon">warning</i>${inputsWithoutLabel.length === 1 ? 'Existe 1 <code>input</code> sem <code>label</code> na funcionalidade.' : `Existem ${inputsWithoutLabel.length} <code>inputs</code> sem <code>label</code> na funcionalidade.`}</span>
 				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action"><i class="material-icons">expand_more</i><i class="material-icons hide">expand_less</i></button>
 				${inputElementsList}
 			</li>
@@ -71,10 +71,10 @@ const helpAndDoc = (domToAnalyse) => {
 	let helpElementsLi = ``;
 	if (helpElements === 0) {
 		alertCounter++;
-		helpElementsLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui nenhum elemento de ajuda.</span></li>`;
+		helpElementsLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de <b>ajuda</b>.</span></li>`;
 	} else {
 		infoCounter++;
-		helpElementsLi = `<li class="collection-item"><span class="description"><i class="material-icons info-icon">info</i>${helpElements === 1 ? 'Existe' : 'Existem'} ${helpElements} ${helpElements === 1 ? 'elemento' : 'elementos'} de ajuda na funcionalidade.</span></li>`;
+		helpElementsLi = `<li class="collection-item"><span class="description"><i class="material-icons info-icon">info</i>${helpElements === 1 ? 'Existe' : 'Existem'} ${helpElements} ${helpElements === 1 ? 'elemento' : 'elementos'} de <b>ajuda</b> na funcionalidade.</span></li>`;
 	}
 
 	// Verifica se imagens possuem alt
@@ -95,7 +95,7 @@ const helpAndDoc = (domToAnalyse) => {
 		`;
 		imgsWithoutAltLi = `
 			<li class="collection-item">
-				<span class="description"><i class="material-icons alert-icon">warning</i>De ${imgsArray.length} ${imgsArray.length > 1 ? 'imagens utilizadas' : 'imagem utilizada'} na funcionalidade ${imgsWithoutAlt.length} não ${imgsWithoutAlt.length > 1 ? 'possuem' : 'possui'} texto alternativo.</span>
+				<span class="description"><i class="material-icons alert-icon">warning</i>De ${imgsArray.length} ${imgsArray.length > 1 ? '<b>imagens</b> utilizadas' : '<b>imagem</b> utilizada'} na funcionalidade ${imgsWithoutAlt.length} não ${imgsWithoutAlt.length > 1 ? 'possuem' : 'possui'} <b>texto alternativo</b>.</span>
 				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action"><i class="material-icons">expand_more</i><i class="material-icons hide">expand_less</i></button>
 				${imgElementsList}
 			</li>
@@ -111,6 +111,7 @@ const helpAndDoc = (domToAnalyse) => {
 		<ul class="collection with-header alerts-detected">
 			<li class="collection-header">
 				<h3>Ajuda e documentação // ${alertsAndInfosMsg}</h3>
+				<a class="wiki-link" href="https://github.com/rafaelbaarbosa/ux-inspector/wiki" target="_blank">saiba mais sobre este princípio<i class="material-icons">open_in_new</i></a>
 			</li>
 			${navsLi}
 			${inputsWithoutPlaceholderLi}

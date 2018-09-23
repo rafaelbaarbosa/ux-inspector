@@ -1,5 +1,13 @@
+html {
+	font-family: 'Open Sans', sans-serif !important;
+}
+
+.popup-html {
+	max-width: 375px;
+}
+
 body {
-  padding: 20px;
+	padding: 20px;
 }
 
 .hide {
@@ -8,6 +16,18 @@ body {
 
 #pfvr-vai {
 	padding: 0 20px;
+}
+
+code {
+	padding: 4px;
+	background: #dadfe7;
+	line-height: 1;
+	border-radius: 4px;
+	margin: 0 4px;
+}
+
+b {
+	margin: 0 4px;
 }
 
 .final-result {
@@ -23,6 +43,53 @@ body {
 	margin: 0;
 	background: #6150cd;
 	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	position: relative;
+}
+
+.final-result h1 span {
+	font-size: 22px;
+}
+
+.final-result .wiki-link {
+	color: #2face9;
+	font-size: 14px;
+	line-height: 1.4;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.final-result h1 .wiki-link {
+	color: #58c1f4;
+	position: absolute;
+	bottom: 8px;
+	right: 8px;
+}
+
+.final-result .wiki-link i {
+	font-size: 16px;
+	margin-left: 8px;
+}
+
+#link {
+	margin-bottom: 8px;
+}
+
+#date {
+	margin: 0;
+}
+
+#time {
+	margin-top: 8px;
+}
+
+#time, #link, #date {
+	font-weight: bold;
+	padding: 0 20px;
 }
 
 .final-result .collection, .final-result .collection .collection-header, .final-result .collection .collection-item {
@@ -146,6 +213,7 @@ span.infos-and-alerts i {
 	width: 375px;
 	height: 340px;
 	background: #6150cd;
+	max-width: 375px;
 }
 
 .popup-body h1 {
@@ -3396,8 +3464,8 @@ td, th {
 }
 
 .collection.with-header .collection-header {
-  background-color: #fff;
-  border-bottom: 1px solid #e0e0e0;
+	background-color: rgba(116, 96, 238, .25);
+  border-bottom: 1px solid #aab3bf;
   padding: 10px 20px;
 }
 

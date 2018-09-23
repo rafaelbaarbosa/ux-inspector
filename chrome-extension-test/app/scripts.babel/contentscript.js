@@ -92,7 +92,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 					const alertsMsg = `${totalAlerts > 0 ? `<i class="material-icons alert-icon">warning</i>${totalAlerts === 1 ? '1 alerta' : `${totalAlerts} alertas`}` : ''}`;
 					const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(totalInfos && totalAlerts) ? 'e' : ''} ${alertsMsg}</span>`;
 					finalReport = `
-						<h2>Não foram encontradas funcionalidades na página, portanto todo o código da página foi tratado como uma funcionalidade.</h2>
+						<h2>Não foram encontradas marcações de funcionalidades na página. Portanto todo o código da página foi tratado como uma única funcionalidade.</h2>
 						<h2 class="func-name">Relatório da página</h2>
 						<h3 class="total-alerts-infos">Foram encontradas um total de ${alertsAndInfosMsg}.</h3>
 						<section class="reports">

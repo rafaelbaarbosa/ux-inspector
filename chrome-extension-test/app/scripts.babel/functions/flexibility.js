@@ -32,7 +32,7 @@ const flexibility = (domToAnalyse) => {
 
 	if (pathLiArray.length === 0) {
 		alertCounter++;
-		pathsMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui nenhum caminho para ser finalizada.</span>`;
+		pathsMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui caminho para ser finalizada.</span>`;
 	} else {
 		infoCounter++;
 		pathsMsg = `<span class="description"><i class="material-icons info-icon">info</i>Essa funcionalidade possui ${numberOfPaths} ${numberOfPaths === 1 ? 'caminho possível' : 'caminhos possíveis'} para ser finalizada.</span>`;
@@ -43,7 +43,10 @@ const flexibility = (domToAnalyse) => {
 	const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(infoCounter && alertCounter) ? 'e' : ''} ${alertsMsg}</span>`;
 	const report = `
 		<ul class="collection with-header alerts-detected">
-			<li class="collection-header"><h3>Flexibilidade e eficiência do uso // ${alertsAndInfosMsg}</h3></li>
+			<li class="collection-header">
+				<h3>Flexibilidade e eficiência do uso // ${alertsAndInfosMsg}</h3>
+				<a class="wiki-link" href="https://github.com/rafaelbaarbosa/ux-inspector/wiki" target="_blank">saiba mais sobre este princípio<i class="material-icons">open_in_new</i></a>
+			</li>
 			<li class="collection-item">${pathsMsg}</li>
 			${pathLiArray.join('\n')}
 		</ul>

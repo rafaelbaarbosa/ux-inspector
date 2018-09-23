@@ -10,7 +10,7 @@ const preventErrors = (domToAnalyse) => {
 	let alertMsg = ``;
 	if (alertElements === 0) {
 		alertCounter++;
-		alertMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui nenhum elemento de mensagem de alerta.</span>`;
+		alertMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de mensagem de alerta.</span>`;
 	} else {
 		infoCounter++;
 		alertMsg = `<span class="description"><i class="material-icons info-icon">info</i>${alertElements === 1 ? 'Existe' : 'Existem'} ${alertElements} ${alertElements === 1 ? 'elemento' : 'elementos'} de alerta na página${permanentActions ? `, além disso ${permanentActions > 1 ? `existem ${permanentActions} ações permanentes.` : `existe ${permanentActions} ação permanente.`}` : '.'}</span>`;
@@ -54,7 +54,10 @@ const preventErrors = (domToAnalyse) => {
 	const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(infoCounter && alertCounter) ? 'e' : ''} ${alertsMsg}</span>`;
 	const report = `
 		<ul class="collection with-header alerts-detected">
-			<li class="collection-header"><h3>Prevenção de erros // ${alertsAndInfosMsg}</h3></li>
+			<li class="collection-header">
+				<h3>Prevenção de erros // ${alertsAndInfosMsg}</h3>
+				<a class="wiki-link" href="https://github.com/rafaelbaarbosa/ux-inspector/wiki" target="_blank">saiba mais sobre este princípio<i class="material-icons">open_in_new</i></a>
+			</li>
 			<li class="collection-item">${alertMsg}</li>
 			${formsWithoutSubmitLi}
 			${formsWithoutRequiredInputsLi}

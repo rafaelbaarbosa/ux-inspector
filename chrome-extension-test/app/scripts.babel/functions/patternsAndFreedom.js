@@ -99,7 +99,10 @@ const patternsAndFreedom = (domToAnalyse) => {
 				const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(infoCounter && alertCounter) ? 'e' : ''} ${alertsMsg}</span>`;
 				const report = `
 					<ul class="collection with-header alerts-detected">
-						<li class="collection-header"><h3>Consistência e padronização | Liberdade de controle fácil para o usuário // ${alertsAndInfosMsg}</h3></li>
+						<li class="collection-header">
+							<h3>Consistência e padronização | Liberdade de controle fácil para o usuário // ${alertsAndInfosMsg}</h3>
+							<a class="wiki-link" href="https://github.com/rafaelbaarbosa/ux-inspector/wiki" target="_blank">saiba mais sobre estes princípios<i class="material-icons">open_in_new</i></a>
+						</li>
 						${interactiveContentLi}
 						${brokenLinksLi}
 						${connectionErrorsLi}

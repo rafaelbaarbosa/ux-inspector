@@ -25,17 +25,17 @@ const flexibility = (domToAnalyse) => {
 	let numberOfPaths = 0;
 	let pathLiArray = [];
 	for (const key in pathsObject) {
-		pathLiArray.push(`<li class="collection-item"><span class="description"><i class="material-icons info-icon">info</i>O caminho ${key} precisa de ${pathsObject[key]} ${pathsObject[key] === 1 ? 'passo' : 'passos'} para ser finalizado.</span></li>`);
+		pathLiArray.push(`<li class="collection-item"><span class="description"><i class="material-icons info-icon">info</i>O <b>caminho</b> ${key} precisa de ${pathsObject[key]} ${pathsObject[key] === 1 ? '<b>passo</b>' : '<b>passos</b>'} para ser finalizado.</span></li>`);
 		numberOfPaths++;
 		infoCounter++;
 	}
 
 	if (pathLiArray.length === 0) {
 		alertCounter++;
-		pathsMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui caminho para ser finalizada.</span>`;
+		pathsMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui <b>caminho</b> para ser finalizada.</span>`;
 	} else {
 		infoCounter++;
-		pathsMsg = `<span class="description"><i class="material-icons info-icon">info</i>Essa funcionalidade possui ${numberOfPaths} ${numberOfPaths === 1 ? 'caminho possível' : 'caminhos possíveis'} para ser finalizada.</span>`;
+		pathsMsg = `<span class="description"><i class="material-icons info-icon">info</i>Essa funcionalidade possui ${numberOfPaths} ${numberOfPaths === 1 ? '<b>caminho</b> possível' : '<b>caminhos</b> possíveis'} para ser finalizada.</span>`;
 	}
 
 	const infosMsg = `${infoCounter > 0 ? `<i class="material-icons info-icon">info</i>${infoCounter === 1 ? '1 informação' : `${infoCounter} informações`}` : ''}`;

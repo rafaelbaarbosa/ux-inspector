@@ -9,17 +9,17 @@ const systemState = (domToAnalyse) => {
 	let systemStateMsg = ``;
 	if (systemStateElements === 0) {
 		alertCounter++;
-		systemStateMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de visualização de estado do sistema.</span>`;
+		systemStateMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de <b>visualização de estado do sistema</b>.</span>`;
 	} else {
 		infoCounter++;
-		systemStateMsg = `<span class="description"><i class="material-icons info-icon">info</i>${systemStateElements === 1 ? 'Existe' : 'Existem'} ${systemStateElements} ${systemStateElements === 1 ? 'elemento' : 'elementos'} de visualização do estado do sistema na funcionalidade.</span>`;
+		systemStateMsg = `<span class="description"><i class="material-icons info-icon">info</i>${systemStateElements === 1 ? 'Existe' : 'Existem'} ${systemStateElements} ${systemStateElements === 1 ? 'elemento' : 'elementos'} de <b>visualização do estado do sistema</b> na funcionalidade.</span>`;
 	}
 	
 	// Verifica se página possui title
 	let pageTitleLi = ``;
 	if (!document.querySelectorAll('title').length) {
 		alertCounter++;
-		pageTitleLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>Essa página não possui title.</span></li>`
+		pageTitleLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>Essa página não possui <code>title</code>.</span></li>`
 	}
 	
 	// Verifica quantos elementos de feedback existem
@@ -28,10 +28,10 @@ const systemState = (domToAnalyse) => {
 	let feedbackMsg = ``;
 	if (feedbackElements === 0) {
 		alertCounter++;
-		feedbackMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento para apresentar feedback.</span>`;
+		feedbackMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento para apresentar <b>feedback</b>.</span>`;
 	} else {
 		infoCounter++;
-		feedbackMsg = `<span class="description"><i class="material-icons info-icon">info</i>${feedbackElements === 1 ? 'Existe' : 'Existem'} ${feedbackElements} ${feedbackElements === 1 ? 'elemento' : 'elementos'} para apresentar feedback na funcionalidade.</span>`;
+		feedbackMsg = `<span class="description"><i class="material-icons info-icon">info</i>${feedbackElements === 1 ? 'Existe' : 'Existem'} ${feedbackElements} ${feedbackElements === 1 ? 'elemento' : 'elementos'} para apresentar <b>feedback</b> na funcionalidade.</span>`;
 	}
 
 	// Verifica elementos para finalizar ação
@@ -39,10 +39,10 @@ const systemState = (domToAnalyse) => {
 	let finishingActionMsg = ``;
 	if (finishingActionElements === 0) {
 		alertCounter++;
-		finishingActionMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento que permite ao usuário finalizar a sua tarefa principal.</span>`;
+		finishingActionMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento que permite ao usuário <b>finalizar a sua tarefa principal</b>.</span>`;
 	} else {
 		infoCounter++;
-		finishingActionMsg = `<span class="description"><i class="material-icons info-icon">info</i>${finishingActionElements === 1 ? 'Existe' : 'Existem'} ${finishingActionElements} ${finishingActionElements === 1 ? 'elemento' : 'elementos'} que permitem ao usuário finalizar a tarefa principal da funcionalidade.</span>`;
+		finishingActionMsg = `<span class="description"><i class="material-icons info-icon">info</i>${finishingActionElements === 1 ? 'Existe' : 'Existem'} ${finishingActionElements} ${finishingActionElements === 1 ? 'elemento' : 'elementos'} que permitem ao usuário <b>finalizar a tarefa principal</b> da funcionalidade.</span>`;
 	}
 
 	// Verifica elementos de ação primária
@@ -50,10 +50,10 @@ const systemState = (domToAnalyse) => {
 	let primaryActionMsg = ``;
 	if (primaryActionElements === 0) {
 		alertCounter++;
-		primaryActionMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de ação primária.</span>`;
+		primaryActionMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de <b>ação primária</b>.</span>`;
 	} else {
 		infoCounter++;
-		primaryActionMsg = `<span class="description"><i class="material-icons info-icon">info</i>${primaryActionElements === 1 ? 'Existe' : 'Existem'} ${primaryActionElements} ${primaryActionElements === 1 ? 'elemento' : 'elementos'} de ação primária na funcionalidade.</span>`;
+		primaryActionMsg = `<span class="description"><i class="material-icons info-icon">info</i>${primaryActionElements === 1 ? 'Existe' : 'Existem'} ${primaryActionElements} ${primaryActionElements === 1 ? 'elemento' : 'elementos'} de <b>ação primária</b> na funcionalidade.</span>`;
 	}
 
 	// Verifica elementos de cancelamento
@@ -61,10 +61,10 @@ const systemState = (domToAnalyse) => {
 	let cancelActionMsg = ``;
 	if (cancelActionElements === 0) {
 		alertCounter++;
-		cancelActionMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de cancelar uma ação que o usuário tenha feito.</span>`;
+		cancelActionMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de <b>cancelar uma ação</b> que o usuário tenha feito.</span>`;
 	} else {
 		infoCounter++;
-		cancelActionMsg = `<span class="description"><i class="material-icons info-icon">info</i>${cancelActionElements === 1 ? 'Existe' : 'Existem'} ${cancelActionElements} ${cancelActionElements === 1 ? 'elemento' : 'elementos'} de cancelar uma ação que o usuário tenha feito na funcionalidade.</span>`;
+		cancelActionMsg = `<span class="description"><i class="material-icons info-icon">info</i>${cancelActionElements === 1 ? 'Existe' : 'Existem'} ${cancelActionElements} ${cancelActionElements === 1 ? 'elemento' : 'elementos'} de <b>cancelar uma ação</b> que o usuário tenha feito na funcionalidade.</span>`;
 	}
 
 	// Verifica elementos de ação permanente
@@ -72,10 +72,10 @@ const systemState = (domToAnalyse) => {
 	let permanentActionMsg = ``;
 	if (permanentActionElements === 0) {
 		infoCounter++;
-		permanentActionMsg = `<span class="description"><i class="material-icons info-icon">info</i>Essa funcionalidade não possui elemento de ação permanente.</span>`;
+		permanentActionMsg = `<span class="description"><i class="material-icons info-icon">info</i>Essa funcionalidade não possui elemento de <b>ação permanente</b>.</span>`;
 	} else {
 		infoCounter++;
-		permanentActionMsg = `<span class="description"><i class="material-icons info-icon">info</i>${permanentActionElements === 1 ? 'Existe' : 'Existem'} ${permanentActionElements} ${permanentActionElements === 1 ? 'elemento' : 'elementos'} de ação permanente na funcionalidade.</span>`;
+		permanentActionMsg = `<span class="description"><i class="material-icons info-icon">info</i>${permanentActionElements === 1 ? 'Existe' : 'Existem'} ${permanentActionElements} ${permanentActionElements === 1 ? 'elemento' : 'elementos'} de <b>ação permanente</b> na funcionalidade.</span>`;
 	}
 
 	const infosMsg = `${infoCounter > 0 ? `<i class="material-icons info-icon">info</i>${infoCounter === 1 ? '1 informação' : `${infoCounter} informações`}` : ''}`;

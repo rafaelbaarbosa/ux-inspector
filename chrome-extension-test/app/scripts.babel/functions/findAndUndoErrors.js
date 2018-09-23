@@ -10,18 +10,18 @@ const findAndUndoErrors = (domToAnalyse) => {
 
 	if (errorElements === 0) {
 		alertCounter++;
-		errorMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de mensagem de erro.</span>`;
+		errorMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de <b>mensagem de erro</b>.</span>`;
 	} else {
 		infoCounter++;
-		errorMsg = `<span class="description"><i class="material-icons info-icon">info</i>${errorElements === 1 ? 'Existe' : 'Existem'} ${errorElements} ${errorElements === 1 ? 'mensagem' : 'mensagens'} de erro na funcionalidade.</span>`;
+		errorMsg = `<span class="description"><i class="material-icons info-icon">info</i>${errorElements === 1 ? 'Existe' : 'Existem'} ${errorElements} ${errorElements === 1 ? '<b>mensagem' : '<b>mensagens'} de erro</b> na funcionalidade.</span>`;
 	}
 
 	if (undoErrorsElements === 0) {
 		alertCounter++;
-		undoErrorsMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de recuperação de erros.</span>`;
+		undoErrorsMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de <b>recuperação de erros</b>.</span>`;
 	} else {
 		infoCounter++;
-		undoErrorsMsg = `<span class="description"><i class="material-icons info-icon">info</i>${undoErrorsElements === 1 ? 'Existe' : 'Existem'} ${undoErrorsElements} ${undoErrorsElements === 1 ? 'elemento' : 'elementos'} de recuperação de erros na funcionalidade.</span>`;
+		undoErrorsMsg = `<span class="description"><i class="material-icons info-icon">info</i>${undoErrorsElements === 1 ? 'Existe' : 'Existem'} ${undoErrorsElements} ${undoErrorsElements === 1 ? 'elemento' : 'elementos'} de <b>recuperação de erros</b> na funcionalidade.</span>`;
 	}
 
 	const infosMsg = `${infoCounter > 0 ? `<i class="material-icons info-icon">info</i>${infoCounter === 1 ? '1 informação' : `${infoCounter} informações`}` : ''}`;

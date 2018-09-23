@@ -10,10 +10,10 @@ const preventErrors = (domToAnalyse) => {
 	let alertMsg = ``;
 	if (alertElements === 0) {
 		alertCounter++;
-		alertMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de mensagem de alerta.</span>`;
+		alertMsg = `<span class="description"><i class="material-icons alert-icon">warning</i>Essa funcionalidade não possui elemento de <b>mensagem de alerta</b>.</span>`;
 	} else {
 		infoCounter++;
-		alertMsg = `<span class="description"><i class="material-icons info-icon">info</i>${alertElements === 1 ? 'Existe' : 'Existem'} ${alertElements} ${alertElements === 1 ? 'elemento' : 'elementos'} de alerta na página${permanentActions ? `, além disso ${permanentActions > 1 ? `existem ${permanentActions} ações permanentes.` : `existe ${permanentActions} ação permanente.`}` : '.'}</span>`;
+		alertMsg = `<span class="description"><i class="material-icons info-icon">info</i>${alertElements === 1 ? 'Existe' : 'Existem'} ${alertElements} ${alertElements === 1 ? 'elemento' : 'elementos'} de <b>mensagem de alerta</b> na página${permanentActions ? `, além disso ${permanentActions > 1 ? `existem ${permanentActions} <b>ações permanentes</b>.` : `existe ${permanentActions} <b>ação permanente</b>.`}` : '.'}</span>`;
 	}
 
 	// Verifica forms sem elemento para input, sem inputs required e inputs sem type.
@@ -34,19 +34,19 @@ const preventErrors = (domToAnalyse) => {
 	let formsWithoutSubmitLi = ``;
 	if (formsWithoutSubmit) {
 		alertCounter++;
-		formsWithoutSubmitLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>${formsWithoutSubmit === 1 ? 'Existe' : 'Existem'} ${formsWithoutSubmit} ${formsWithoutSubmit === 1 ? 'formulário' : 'formulários'} sem nenhum elemento com type="submit".</span></li>`;
+		formsWithoutSubmitLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>${formsWithoutSubmit === 1 ? 'Existe' : 'Existem'} ${formsWithoutSubmit} ${formsWithoutSubmit === 1 ? '<b>formulário</b>' : '<b>formulários</b>'} sem nenhum elemento com <code>type="submit"</code>.</span></li>`;
 	}
 
 	let formsWithoutRequiredInputsLi = ``;
 	if (formsWithoutRequiredInputs) {
 		alertCounter++;
-		formsWithoutRequiredInputsLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>${formsWithoutRequiredInputs === 1 ? 'Existe' : 'Existem'} ${formsWithoutRequiredInputs} ${formsWithoutRequiredInputs === 1 ? 'formulário' : 'formulários'} sem nenhum elemento obrigatório.</span></li>`;
+		formsWithoutRequiredInputsLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>${formsWithoutRequiredInputs === 1 ? 'Existe' : 'Existem'} ${formsWithoutRequiredInputs} ${formsWithoutRequiredInputs === 1 ? '<b>formulário</b>' : '<b>formulários</b>'} sem nenhum elemento <b>obrigatório</b>.</span></li>`;
 	}
 
 	let inputsWithoutTypeLi = ``;
 	if (inputsWithoutType) {
 		alertCounter++;
-		inputsWithoutTypeLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>${inputsWithoutType === 1 ? 'Existe' : 'Existem'} ${inputsWithoutType} ${inputsWithoutType === 1 ? 'input' : 'inputs'} sem type atribuído.</span></li>`;
+		inputsWithoutTypeLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>${inputsWithoutType === 1 ? 'Existe' : 'Existem'} ${inputsWithoutType} ${inputsWithoutType === 1 ? '<code>input</code>' : '<code>inputs</code>'} sem um valor atribuído ao atributo <code>type</code>.</span></li>`;
 	}
 
 	const infosMsg = `${infoCounter > 0 ? `<i class="material-icons info-icon">info</i>${infoCounter === 1 ? '1 informação' : `${infoCounter} informações`}` : ''}`;

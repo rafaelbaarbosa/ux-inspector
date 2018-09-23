@@ -21,7 +21,7 @@ const patternsAndFreedom = (domToAnalyse) => {
 		`;
 		interactiveContentLi = `
 			<li class="collection-item">
-				<span class="description"><i class="material-icons alert-icon">warning</i>${elementsInsideLi.length === 1 ? 'Existe 1 elemento interativo sem tabindex na funcionalidade.' : `Existem ${elementsInsideLi.length} elementos interativos sem tabindex na funcionalidade.`}</span>
+				<span class="description"><i class="material-icons alert-icon">warning</i>${elementsInsideLi.length === 1 ? 'Existe 1 elemento <b>interativo</b> sem <code>tabindex</code> na funcionalidade.' : `Existem ${elementsInsideLi.length} elementos <b>interativos</b> sem <code>tabindex</code> na funcionalidade.`}</span>
 				<button class="btn waves-effect waves-light toggle-more-info" type="button" name="action"><i class="material-icons">expand_more</i><i class="material-icons hide">expand_less</i></button>
 				${elementsWithoutTabIndexList}
 			</li>
@@ -85,13 +85,13 @@ const patternsAndFreedom = (domToAnalyse) => {
 				let brokenLinksLi = ``;
 				if (brokenLinks) {
 					alertCounter++;
-					brokenLinksLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>${brokenLinks === 1 ? 'Existe 1 link quebrado na funcionalidade.' : `Existem ${brokenLinks} links quebrados na página.`}</span></li>`;
+					brokenLinksLi = `<li class="collection-item"><span class="description"><i class="material-icons alert-icon">warning</i>${brokenLinks === 1 ? 'Existe 1 <b>link quebrado</b> na funcionalidade.' : `Existem ${brokenLinks} <b>links quebrados</b> na funcionalidade.`}</span></li>`;
 				}
 
 				let connectionErrorsLi = ``;
 				if (connectionErrors) {
 					infoCounter++;
-					connectionErrorsLi = `<li class="collection-item"><span class="description"><i class="material-icons info-icon">info</i>${connectionErrors === 1 ? 'Devido a erros de conexão, em 1 link da funcionalidade não foi possível testar se ele leva para alguma página.' : `Devido a erros de conexão, em ${connectionErrors} links da funcionalidade não foi possível testar se eles levam para alguma página.`}</span></li>`;
+					connectionErrorsLi = `<li class="collection-item"><span class="description"><i class="material-icons info-icon">info</i>${connectionErrors === 1 ? 'Devido a erros de conexão, em 1 <b>link</b> da funcionalidade não foi possível testar se ele leva para alguma página.' : `Devido a erros de conexão, em ${connectionErrors} <b>links</b> da funcionalidade não foi possível testar se eles levam para alguma página.`}</span></li>`;
 				}
 
 				const infosMsg = `${infoCounter > 0 ? `<i class="material-icons info-icon">info</i>${infoCounter === 1 ? '1 informação' : `${infoCounter} informações`}` : ''}`;

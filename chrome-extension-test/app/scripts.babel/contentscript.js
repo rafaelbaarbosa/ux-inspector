@@ -56,7 +56,7 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 						const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(totalInfos && totalAlerts) ? 'e' : ''} ${alertsMsg}</span>`;
 						const report = `
 							<h2 class="func-name">Relatório de inspeção da funcionalidade ${funcs[i].getAttribute('uxi-func')}</h2>
-							<h3 class="total-alerts-infos">Foram encontradas um total de ${alertsAndInfosMsg}.</h3>
+							<p class="total-alerts-infos">Foram encontradas um total de ${alertsAndInfosMsg}.</p>
 							<section class="reports">
 								${helpAndDocReport}
 								${findAndUndoErrorsReport}
@@ -92,9 +92,9 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
 					const alertsMsg = `${totalAlerts > 0 ? `<i class="material-icons alert-icon">warning</i>${totalAlerts === 1 ? '1 alerta' : `${totalAlerts} alertas`}` : ''}`;
 					const alertsAndInfosMsg = `<span class="infos-and-alerts">${infosMsg} ${(totalInfos && totalAlerts) ? 'e' : ''} ${alertsMsg}</span>`;
 					finalReport = `
-						<h2>Não foram encontradas marcações de funcionalidades na página. Portanto todo o código da página foi tratado como uma única funcionalidade.</h2>
+						<h2>Não foram encontradas marcações de funcionalidades (<a class="wiki-link" href="https://github.com/rafaelbaarbosa/ux-inspector/wiki" target="_blank">o que é isso?<i class="material-icons">open_in_new</i></a>) na página. Portanto todo o código da página foi tratado como uma única funcionalidade.</h2>
 						<h2 class="func-name">Relatório da página</h2>
-						<h3 class="total-alerts-infos">Foram encontradas um total de ${alertsAndInfosMsg}.</h3>
+						<p class="total-alerts-infos">Foram encontradas um total de ${alertsAndInfosMsg}.</p>
 						<section class="reports">
 							${helpAndDocReport}
 							${findAndUndoErrorsReport}

@@ -34,6 +34,7 @@ b {
 	width: 100%;
 	height: 100%;
 	padding: 0;
+	font-family: 'Open Sans', sans-serif !important;
 }
 
 .final-result h1 {
@@ -64,7 +65,7 @@ b {
 }
 
 .final-result h1 .wiki-link {
-	color: #58c1f4;
+	color: #b7e7ff;
 	position: absolute;
 	bottom: 8px;
 	right: 8px;
@@ -109,6 +110,11 @@ b {
 	color: #7460ee;
 }
 
+.final-result h2 .wiki-link {
+	display: inline-flex;
+	font-size: 24px;
+}
+
 .final-result h2.func-name {
 	margin-bottom: 8px;
 }
@@ -128,9 +134,30 @@ b {
 	display: flex;
 }
 
-.final-result h3.total-alerts-infos {
+.final-result p.total-alerts-infos {
 	margin: 0 0 8px;
 	font-size: 16px;
+	display: flex;
+}
+
+.final-result dl {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0 20px;
+	margin: 36px 0;
+	color: #7460ee;
+}
+
+.final-result dt {
+	font-weight: 700;
+	font-size: 24px;
+}
+
+.final-result dd {
+	font-size: 24px;
+	margin: 0;
+	padding-left: 8px;
+	width: calc(100% - 82px);
 }
 
 .final-result .more-info-list li {
@@ -214,6 +241,7 @@ span.infos-and-alerts i {
 	height: 340px;
 	background: #6150cd;
 	max-width: 375px;
+	font-family: 'Open Sans', sans-serif !important;
 }
 
 .popup-body h1 {

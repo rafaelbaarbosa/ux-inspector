@@ -23,9 +23,8 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		const hours = date.getHours();
 		const minutes = date.getMinutes();
 
-		document.getElementById('link').innerHTML = `Página: ${response.pageUrl}`;
-		document.getElementById('date').innerHTML = `Data: ${day} de ${monthNames[monthIndex]} de ${year}`;
-		document.getElementById('time').innerHTML = `Hora: ${hours < 10 ? `0${hours}` : `${hours}`}:${minutes < 10 ? `0${minutes}` : `${minutes}`}`;
+		document.getElementById('dd-link').innerHTML = `${response.pageUrl}`;
+		document.getElementById('dd-date').innerHTML = `${day} de ${monthNames[monthIndex]} de ${year} às ${hours < 10 ? `0${hours}` : `${hours}`}:${minutes < 10 ? `0${minutes}` : `${minutes}`}`;
 
 		const moreInfoObjects = document.querySelectorAll('.more-info-list li');
 		for (let element of moreInfoObjects) {

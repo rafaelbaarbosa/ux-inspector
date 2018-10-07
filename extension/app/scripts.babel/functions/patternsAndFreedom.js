@@ -4,7 +4,7 @@ const patternsAndFreedom = (domToAnalyse) => {
 	let infoCounter = 0;
 	let alertCounter = 0;
 
-	// Analisa se os elementos com tabindex são conteúdos interativos ou não
+	// Analisa se os elementos conteúdos interativos possuem tabindex ou não
 	let interactiveContentLi = ``;
 	const interactiveContent = Array.from(domToAnalyse.querySelectorAll('audio, img, input, menu, object, video, a, button, details, embed, iframe, label, select, textarea'));
 	const interactiveContentWithoutTabIndex = interactiveContent.filter((element) => {
